@@ -19,7 +19,7 @@
       font-size: 1.8rem;
       font-weight: bold;
       border-radius: 10px;
-      margin-bottom: 30px;
+      margin-bottom: 20px;
     }
 
     .search-container {
@@ -29,47 +29,68 @@
 
     #searchInput {
       padding: 10px;
-      width: 300px;
-      border-radius: 5px;
-      border: 1px solid #aaa;
+      width: 90%;
+      max-width: 400px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+      box-sizing: border-box;
+    }
+
+    .card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+      padding: 15px 20px;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .card-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid #eee;
       font-size: 1rem;
     }
 
-    .table-wrapper {
-      overflow-x: auto;
-      max-width: 100%;
+    .card-row:last-child {
+      border-bottom: none;
     }
 
-    table {
-      width: 100%;
-      max-width: 900px;
-      margin: auto;
-      border-collapse: collapse;
-      background-color: white;
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      min-width: 600px;
+    .card-row .label {
+      font-weight: 600;
+      color: #555;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-size: 0.85rem;
+      flex: 1;
     }
 
-    th, td {
-      padding: 12px 15px;
-      text-align: center;
-      border: 1px solid #ccc;
+    .card-row .value {
+      flex: 1;
+      text-align: right;
+      font-weight: 700;
+      color: #222;
+      white-space: nowrap;
     }
 
-    th {
-      background-color: #0074d9;
-      color: white;
+    .card-model {
+      flex-direction: column;
+      align-items: flex-start;
+      margin-bottom: 10px;
     }
 
-    td:first-child {
+    .card-model .label {
+      flex: none;
+    }
+
+    .card-model .value {
       text-align: left;
-      font-weight: bold;
-    }
-
-    tr:hover {
-      background-color: #f0f8ff;
+      white-space: normal;
+      margin-top: 4px;
     }
 
     .btn-back {
@@ -100,21 +121,6 @@
       color: #00aaff;
       text-decoration: none;
     }
-
-    @media (max-width: 600px) {
-      #searchInput {
-        width: 90%;
-      }
-
-      .table-wrapper {
-        margin: 0 -20px;
-      }
-
-      footer div {
-        flex-direction: column;
-        gap: 10px;
-      }
-    }
   </style>
 </head>
 <body>
@@ -124,47 +130,73 @@
     <input type="text" id="searchInput" placeholder="Buscar modelo..." />
   </div>
 
-  <div class="table-wrapper">
-    <table id="priceTable">
-      <thead>
-        <tr>
-          <th>Modelo</th>
-          <th>FRP</th>
-          <th>T2</th>
-          <th>Flash</th>
-          <th>FRP + T2</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr><td>A3 2016 (SM-A310M)</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$7.000</td></tr>
-        <tr><td>A5 2016 (SM-A510M)</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$7.000</td></tr>
-        <tr><td>A7 2016 (SM-A710M)</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$7.000</td></tr>
-        <tr><td>Grand Prime (SM-G530M, SM-G531M)</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$7.000</td></tr>
-        <tr><td>J1 2016 (SM-J100MU)</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$7.000</td></tr>
-        <tr><td>J1 Ace (SM-J110M, SM-J111M)</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$7.000</td></tr>
-        <tr><td>J1 Mini (SM-J105M)</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$7.000</td></tr>
-        <tr><td>J1 Mini Prime (SM-J106M)</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$7.000</td></tr>
-        <tr><td>J2/J2 Pro (SM-J200M / SM-J250M)</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$7.000</td></tr>
-        <tr><td>J2 Prime (SM-G532M)</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$7.000</td></tr>
-        <tr><td>J3 2016 (SM-J320M)</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$7.000</td></tr>
-        <tr><td>J7 2015 (SM-J700M)</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$7.000</td></tr>
-        <tr><td>J7 2016 (SM-J710MN)</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$7.000</td></tr>
-      </tbody>
-    </table>
+  <div id="cardsContainer">
+    <!-- Las tarjetas se crearán aquí -->
   </div>
 
   <script>
+    const modelos = [
+      {modelo: 'A3 2016 (SM-A310M)', FRP: '$4.000', T2: '$4.000', Flash: '$4.000', 'FRP + T2': '$7.000'},
+      {modelo: 'A5 2016 (SM-A510M)', FRP: '$4.000', T2: '$4.000', Flash: '$4.000', 'FRP + T2': '$7.000'},
+      {modelo: 'A7 2016 (SM-A710M)', FRP: '$4.000', T2: '$4.000', Flash: '$4.000', 'FRP + T2': '$7.000'},
+      {modelo: 'Grand Prime (SM-G530M, SM-G531M)', FRP: '$4.000', T2: '$4.000', Flash: '$4.000', 'FRP + T2': '$7.000'},
+      {modelo: 'J1 2016 (SM-J100MU)', FRP: '$4.000', T2: '$4.000', Flash: '$4.000', 'FRP + T2': '$7.000'},
+      {modelo: 'J1 Ace (SM-J110M, SM-J111M)', FRP: '$4.000', T2: '$4.000', Flash: '$4.000', 'FRP + T2': '$7.000'},
+      {modelo: 'J1 Mini (SM-J105M)', FRP: '$4.000', T2: '$4.000', Flash: '$4.000', 'FRP + T2': '$7.000'},
+      {modelo: 'J1 Mini Prime (SM-J106M)', FRP: '$4.000', T2: '$4.000', Flash: '$4.000', 'FRP + T2': '$7.000'},
+      {modelo: 'J2/J2 Pro (SM-J200M / SM-J250M)', FRP: '$4.000', T2: '$4.000', Flash: '$4.000', 'FRP + T2': '$7.000'},
+      {modelo: 'J2 Prime (SM-G532M)', FRP: '$4.000', T2: '$4.000', Flash: '$4.000', 'FRP + T2': '$7.000'},
+      {modelo: 'J3 2016 (SM-J320M)', FRP: '$4.000', T2: '$4.000', Flash: '$4.000', 'FRP + T2': '$7.000'},
+      {modelo: 'J7 2015 (SM-J700M)', FRP: '$4.000', T2: '$4.000', Flash: '$4.000', 'FRP + T2': '$7.000'},
+      {modelo: 'J7 2016 (SM-J710MN)', FRP: '$4.000', T2: '$4.000', Flash: '$4.000', 'FRP + T2': '$7.000'}
+    ];
+
+    const container = document.getElementById('cardsContainer');
     const input = document.getElementById('searchInput');
-    const table = document.getElementById('priceTable');
-    input.addEventListener('keyup', () => {
-      const filter = input.value.toLowerCase();
-      const rows = table.tBodies[0].rows;
-      for(let i=0; i < rows.length; i++) {
-        const modelCell = rows[i].cells[0];
-        const text = modelCell.textContent.toLowerCase();
-        rows[i].style.display = text.includes(filter) ? '' : 'none';
-      }
+
+    function renderCards(filter = '') {
+      container.innerHTML = '';
+      const filtroLower = filter.toLowerCase();
+
+      modelos
+        .filter(item => item.modelo.toLowerCase().includes(filtroLower))
+        .forEach(item => {
+          const card = document.createElement('div');
+          card.className = 'card';
+
+          card.innerHTML = `
+            <div class="card-row card-model">
+              <div class="label">Modelo</div>
+              <div class="value"><strong>${item.modelo}</strong></div>
+            </div>
+            <div class="card-row">
+              <div class="label">FRP</div>
+              <div class="value">${item.FRP}</div>
+            </div>
+            <div class="card-row">
+              <div class="label">Flash</div>
+              <div class="value">${item.Flash}</div>
+            </div>
+            <div class="card-row">
+              <div class="label">T2</div>
+              <div class="value">${item.T2}</div>
+            </div>
+            <div class="card-row">
+              <div class="label">FRP + T2</div>
+              <div class="value">${item['FRP + T2']}</div>
+            </div>
+          `;
+
+          container.appendChild(card);
+        });
+    }
+
+    input.addEventListener('input', e => {
+      renderCards(e.target.value);
     });
+
+    // Render inicial
+    renderCards();
   </script>
 
   <a href="index.html" class="btn-back">← Volver al Inicio</a>
@@ -183,6 +215,7 @@
   </footer>
 </body>
 </html>
+
 
 
 
