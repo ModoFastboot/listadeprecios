@@ -53,6 +53,19 @@
       background-color: #f0f8ff;
     }
 
+    .search-container {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    #searchInput {
+      padding: 10px;
+      width: 300px;
+      border-radius: 5px;
+      border: 1px solid #aaa;
+      font-size: 1rem;
+    }
+
     .btn-back {
       display: block;
       width: max-content;
@@ -86,7 +99,11 @@
 <body>
   <header>Samsung - Reparación de Software</header>
 
-  <table>
+  <div class="search-container">
+    <input type="text" id="searchInput" placeholder="Buscar modelo..." />
+  </div>
+
+  <table id="priceTable">
     <thead>
       <tr>
         <th>Modelo</th>
@@ -97,64 +114,51 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>A3 2016 (SM-A310M)</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$7.000</td>
-      </tr>
-      <tr>
-        <td>A5 2016 (SM-A510M)</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$7.000</td>
-      </tr>
-      <tr>
-        <td>A7 2016 (SM-A710M)</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$7.000</td>
-      </tr>
-      <tr>
-        <td>Grand Prime (SM-G530M, SM-G531M)</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$7.000</td>
-      </tr>
-      <tr>
-        <td>J1 2016 (SM-J100MU)</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$7.000</td>
-      </tr>
-      <tr>
-        <td>J1 Ace (SM-J110M, SM-J111M)</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$7.000</td>
-      </tr>
-      <tr>
-        <td>J1 Mini (SM-J105M)</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$7.000</td>
-      </tr>
-      <tr>
-        <td>J1 Mini Prime (SM-J106M)</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$7.000</td>
-      </tr>
-      <tr>
-        <td>J2/J2 Pro (SM-J200M / SM-J250M)</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$7.000</td>
-      </tr>
-      <tr>
-        <td>J2 Prime (SM-G532M)</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$7.000</td>
-      </tr>
-      <tr>
-        <td>J3 2016 (SM-J320M)</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$7.000</td>
-      </tr>
-      <tr>
-        <td>J7 2015 (SM-J700M)</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$7.000</td>
-      </tr>
-      <tr>
-        <td>J7 2016 (SM-J710MN)</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$7.000</td>
-      </tr>
+      <tr><td>A3 2016 (SM-A310M)</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$7.000</td></tr>
+      <tr><td>A5 2016 (SM-A510M)</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$7.000</td></tr>
+      <tr><td>A7 2016 (SM-A710M)</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$7.000</td></tr>
+      <tr><td>Grand Prime (SM-G530M, SM-G531M)</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$7.000</td></tr>
+      <tr><td>J1 2016 (SM-J100MU)</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$7.000</td></tr>
+      <tr><td>J1 Ace (SM-J110M, SM-J111M)</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$7.000</td></tr>
+      <tr><td>J1 Mini (SM-J105M)</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$7.000</td></tr>
+      <tr><td>J1 Mini Prime (SM-J106M)</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$7.000</td></tr>
+      <tr><td>J2/J2 Pro (SM-J200M / SM-J250M)</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$7.000</td></tr>
+      <tr><td>J2 Prime (SM-G532M)</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$7.000</td></tr>
+      <tr><td>J3 2016 (SM-J320M)</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$7.000</td></tr>
+      <tr><td>J7 2015 (SM-J700M)</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$7.000</td></tr>
+      <tr><td>J7 2016 (SM-J710MN)</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$7.000</td></tr>
     </tbody>
   </table>
 
+  <script>
+    const input = document.getElementById('searchInput');
+    const table = document.getElementById('priceTable');
+    input.addEventListener('keyup', () => {
+      const filter = input.value.toLowerCase();
+      const rows = table.tBodies[0].rows;
+      for(let i=0; i < rows.length; i++) {
+        const modelCell = rows[i].cells[0];
+        const text = modelCell.textContent.toLowerCase();
+        rows[i].style.display = text.includes(filter) ? '' : 'none';
+      }
+    });
+  </script>
+
   <a href="index.html" class="btn-back">← Volver al Inicio</a>
 
-<footer>
-  <div style="display: flex; justify-content: center; align-items: center; gap: 20px;">
-    <a href="https://wa.me/5491168577446" target="_blank" style="display: flex; align-items: center; text-decoration: none; color: black;">
-      <img src="img/whatsapp.png" alt="WhatsApp" style="width: 20px; height: 20px; margin-right: 8px;">
-      +54 9 11 6857-7446
-    </a>
-    <a href="https://wa.me/5491123177277" target="_blank" style="display: flex; align-items: center; text-decoration: none; color: black;">
-      <img src="img/whatsapp.png" alt="WhatsApp" style="width: 20px; height: 20px; margin-right: 8px;">
-      +54 9 11 2317-7277
-    </a>
-  </div>
-</footer>
+  <footer>
+    <div style="display: flex; justify-content: center; align-items: center; gap: 20px;">
+      <a href="https://wa.me/5491168577446" target="_blank" style="display: flex; align-items: center; text-decoration: none; color: black;">
+        <img src="img/whatsapp.png" alt="WhatsApp" style="width: 20px; height: 20px; margin-right: 8px;">
+        +54 9 11 6857-7446
+      </a>
+      <a href="https://wa.me/5491123177277" target="_blank" style="display: flex; align-items: center; text-decoration: none; color: black;">
+        <img src="img/whatsapp.png" alt="WhatsApp" style="width: 20px; height: 20px; margin-right: 8px;">
+        +54 9 11 2317-7277
+      </a>
+    </div>
+  </footer>
 </body>
 </html>
-
 
 
