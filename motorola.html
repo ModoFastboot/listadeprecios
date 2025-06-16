@@ -9,11 +9,10 @@
       font-family: Arial, sans-serif;
       background-color: #e6f0fb;
       padding: 20px;
-      margin: 0;
     }
 
     header {
-      background-color: #005bab;
+      background-color: #1976d2;
       color: white;
       padding: 15px;
       text-align: center;
@@ -28,40 +27,30 @@
       margin: 0 auto 20px auto;
       padding: 10px;
       width: 300px;
-      max-width: 90%;
       border: 1px solid #ccc;
       border-radius: 8px;
       font-size: 1rem;
-      box-sizing: border-box;
-    }
-
-    /* Contenedor para scroll horizontal en la tabla */
-    .table-container {
-      overflow-x: auto;
-      margin: auto;
-      max-width: 100%;
     }
 
     table {
       width: 100%;
-      max-width: 800px;
+      max-width: 900px;
+      margin: auto;
       border-collapse: collapse;
       background-color: white;
       border-radius: 8px;
       overflow: hidden;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      min-width: 600px; /* para evitar que se haga demasiado estrecha */
     }
 
     th, td {
       padding: 12px 15px;
       text-align: center;
       border: 1px solid #ccc;
-      font-size: 1rem;
     }
 
     th {
-      background-color: #0074d9;
+      background-color: #1565c0;
       color: white;
     }
 
@@ -71,25 +60,24 @@
     }
 
     tr:hover {
-      background-color: #d0e8ff;
+      background-color: #e3f2fd;
     }
 
     .btn-back {
       display: block;
       width: max-content;
       margin: 30px auto 0 auto;
-      background-color: #00aaff;
+      background-color: #2196f3;
       color: white;
       text-decoration: none;
       padding: 12px 25px;
       border-radius: 10px;
       font-weight: bold;
       transition: 0.3s;
-      font-size: 1rem;
     }
 
     .btn-back:hover {
-      background-color: #007fbb;
+      background-color: #1976d2;
     }
 
     footer {
@@ -97,51 +85,68 @@
       text-align: center;
       font-size: 0.9rem;
       color: #555;
-      padding-bottom: 20px;
     }
 
     footer a {
-      color: #00aaff;
+      color: #1565c0;
       text-decoration: none;
     }
 
-    /* MEDIA QUERIES PARA MÓVILES */
+    /* Responsive para pantallas pequeñas */
     @media (max-width: 600px) {
-      header {
-        font-size: 1.4rem;
-        padding: 12px;
-        margin-bottom: 20px;
-      }
-
       #searchInput {
         width: 90%;
+      }
+
+      table, thead, tbody, th, td, tr {
+        display: block;
+      }
+
+      thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+      }
+
+      tr {
+        margin-bottom: 20px;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 0 8px rgba(0,0,0,0.1);
+        padding: 15px;
+      }
+
+      td {
+        border: none;
+        border-bottom: 1px solid #eee;
+        position: relative;
+        padding-left: 50%;
+        text-align: left;
+        font-size: 0.95rem;
+        color: #000;
+      }
+
+      td:last-child {
+        border-bottom: 0;
+      }
+
+      td::before {
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+        font-weight: bold;
+        text-align: left;
+        color: #555;
         font-size: 0.9rem;
-        padding: 8px;
+        content: attr(data-label);
       }
 
-      table {
-        min-width: 600px;
-        font-size: 0.85rem;
-      }
-
-      th, td {
-        padding: 8px 10px;
-      }
-
-      .btn-back {
-        padding: 10px 20px;
-        font-size: 0.9rem;
-      }
-
-      footer {
-        font-size: 0.8rem;
-        margin-top: 30px;
-      }
-
-      footer a img {
-        width: 18px;
-        height: 18px;
-        margin-right: 6px;
+      footer div {
+        flex-direction: column;
+        gap: 10px;
       }
     }
   </style>
@@ -149,33 +154,84 @@
 <body>
   <header>Motorola - Reparación de Software</header>
 
-  <!-- Buscador -->
   <input type="text" id="searchInput" placeholder="Buscar modelo..." />
 
-  <div class="table-container">
-    <table id="priceTable">
-      <thead>
-        <tr>
-          <th>Modelo</th>
-          <th>FRP</th>
-          <th>T2</th>
-          <th>Flash</th>
-          <th>FRP + T2</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr><td>G4 Play / G4 Plus</td><td>$3.500</td><td>$100.000</td><td>$3.500</td><td>$6.000</td></tr>
-        <tr><td>G5 / G5 Plus</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$6.500</td></tr>
-        <tr><td>G6 / G6 Play</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$6.500</td></tr>
-        <tr><td>G7 / G7 Power / G7 Play</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$6.500</td></tr>
-        <tr><td>G8 / G8 Plus / G8 Power</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$6.500</td></tr>
-        <tr><td>G9 / G9 Power / G9 Play</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$6.500</td></tr>
-        <tr><td>E5 / E5 Play / E5 Plus</td><td>$3.500</td><td>$4.000</td><td>$3.500</td><td>$6.000</td></tr>
-        <tr><td>E6 / E6 Play / E6 Plus</td><td>$3.500</td><td>$4.000</td><td>$3.500</td><td>$6.000</td></tr>
-        <tr><td>E7 / E7i Power / E7 Plus</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$6.500</td></tr>
-      </tbody>
-    </table>
-  </div>
+  <table id="priceTable" aria-label="Tabla de precios Motorola">
+    <thead>
+      <tr>
+        <th>Modelo</th>
+        <th>FRP</th>
+        <th>Flash</th>
+        <th>Reinicio</th>
+        <th>Cuenta Motorola</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td data-label="Modelo">Moto G7</td>
+        <td data-label="FRP">$4.000</td>
+        <td data-label="Flash">$3.500</td>
+        <td data-label="Reinicio">$2.000</td>
+        <td data-label="Cuenta Motorola">$5.500</td>
+      </tr>
+      <tr>
+        <td data-label="Modelo">Moto G8</td>
+        <td data-label="FRP">$4.200</td>
+        <td data-label="Flash">$3.700</td>
+        <td data-label="Reinicio">$2.100</td>
+        <td data-label="Cuenta Motorola">$5.700</td>
+      </tr>
+      <tr>
+        <td data-label="Modelo">Moto G9</td>
+        <td data-label="FRP">$4.300</td>
+        <td data-label="Flash">$3.800</td>
+        <td data-label="Reinicio">$2.200</td>
+        <td data-label="Cuenta Motorola">$5.800</td>
+      </tr>
+      <tr>
+        <td data-label="Modelo">Moto E6</td>
+        <td data-label="FRP">$3.800</td>
+        <td data-label="Flash">$3.300</td>
+        <td data-label="Reinicio">$1.900</td>
+        <td data-label="Cuenta Motorola">$5.000</td>
+      </tr>
+      <tr>
+        <td data-label="Modelo">Moto E7</td>
+        <td data-label="FRP">$3.900</td>
+        <td data-label="Flash">$3.400</td>
+        <td data-label="Reinicio">$1.950</td>
+        <td data-label="Cuenta Motorola">$5.100</td>
+      </tr>
+      <tr>
+        <td data-label="Modelo">Moto Z4</td>
+        <td data-label="FRP">$4.500</td>
+        <td data-label="Flash">$4.000</td>
+        <td data-label="Reinicio">$2.300</td>
+        <td data-label="Cuenta Motorola">$6.000</td>
+      </tr>
+      <tr>
+        <td data-label="Modelo">Moto One</td>
+        <td data-label="FRP">$4.400</td>
+        <td data-label="Flash">$3.900</td>
+        <td data-label="Reinicio">$2.200</td>
+        <td data-label="Cuenta Motorola">$5.900</td>
+      </tr>
+      <tr>
+        <td data-label="Modelo">Moto G Power</td>
+        <td data-label="FRP">$4.600</td>
+        <td data-label="Flash">$4.100</td>
+        <td data-label="Reinicio">$2.400</td>
+        <td data-label="Cuenta Motorola">$6.100</td>
+      </tr>
+      <tr>
+        <td data-label="Modelo">Moto G Stylus</td>
+        <td data-label="FRP">$4.700</td>
+        <td data-label="Flash">$4.200</td>
+        <td data-label="Reinicio">$2.500</td>
+        <td data-label="Cuenta Motorola">$6.200</td>
+      </tr>
+    </tbody>
+  </table>
 
   <script>
     const input = document.getElementById('searchInput');
