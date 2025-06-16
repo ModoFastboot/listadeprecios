@@ -9,6 +9,7 @@
       font-family: Arial, sans-serif;
       background-color: #e6f0fb;
       padding: 20px;
+      margin: 0;
     }
 
     header {
@@ -27,26 +28,36 @@
       margin: 0 auto 20px auto;
       padding: 10px;
       width: 300px;
+      max-width: 90%;
       border: 1px solid #ccc;
       border-radius: 8px;
       font-size: 1rem;
+      box-sizing: border-box;
+    }
+
+    /* Contenedor para scroll horizontal en la tabla */
+    .table-container {
+      overflow-x: auto;
+      margin: auto;
+      max-width: 100%;
     }
 
     table {
       width: 100%;
       max-width: 800px;
-      margin: auto;
       border-collapse: collapse;
       background-color: white;
       border-radius: 8px;
       overflow: hidden;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      min-width: 600px; /* para evitar que se haga demasiado estrecha */
     }
 
     th, td {
       padding: 12px 15px;
       text-align: center;
       border: 1px solid #ccc;
+      font-size: 1rem;
     }
 
     th {
@@ -60,7 +71,7 @@
     }
 
     tr:hover {
-      background-color: #f0f8ff;
+      background-color: #d0e8ff;
     }
 
     .btn-back {
@@ -74,6 +85,7 @@
       border-radius: 10px;
       font-weight: bold;
       transition: 0.3s;
+      font-size: 1rem;
     }
 
     .btn-back:hover {
@@ -85,11 +97,52 @@
       text-align: center;
       font-size: 0.9rem;
       color: #555;
+      padding-bottom: 20px;
     }
 
     footer a {
       color: #00aaff;
       text-decoration: none;
+    }
+
+    /* MEDIA QUERIES PARA MÓVILES */
+    @media (max-width: 600px) {
+      header {
+        font-size: 1.4rem;
+        padding: 12px;
+        margin-bottom: 20px;
+      }
+
+      #searchInput {
+        width: 90%;
+        font-size: 0.9rem;
+        padding: 8px;
+      }
+
+      table {
+        min-width: 600px;
+        font-size: 0.85rem;
+      }
+
+      th, td {
+        padding: 8px 10px;
+      }
+
+      .btn-back {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+      }
+
+      footer {
+        font-size: 0.8rem;
+        margin-top: 30px;
+      }
+
+      footer a img {
+        width: 18px;
+        height: 18px;
+        margin-right: 6px;
+      }
     }
   </style>
 </head>
@@ -99,28 +152,30 @@
   <!-- Buscador -->
   <input type="text" id="searchInput" placeholder="Buscar modelo..." />
 
-  <table id="priceTable">
-    <thead>
-      <tr>
-        <th>Modelo</th>
-        <th>FRP</th>
-        <th>T2</th>
-        <th>Flash</th>
-        <th>FRP + T2</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr><td>G4 Play / G4 Plus</td><td>$3.500</td><td>$4.000</td><td>$3.500</td><td>$6.000</td></tr>
-      <tr><td>G5 / G5 Plus</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$6.500</td></tr>
-      <tr><td>G6 / G6 Play</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$6.500</td></tr>
-      <tr><td>G7 / G7 Power / G7 Play</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$6.500</td></tr>
-      <tr><td>G8 / G8 Plus / G8 Power</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$6.500</td></tr>
-      <tr><td>G9 / G9 Power / G9 Play</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$6.500</td></tr>
-      <tr><td>E5 / E5 Play / E5 Plus</td><td>$3.500</td><td>$4.000</td><td>$3.500</td><td>$6.000</td></tr>
-      <tr><td>E6 / E6 Play / E6 Plus</td><td>$3.500</td><td>$4.000</td><td>$3.500</td><td>$6.000</td></tr>
-      <tr><td>E7 / E7i Power / E7 Plus</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$6.500</td></tr>
-    </tbody>
-  </table>
+  <div class="table-container">
+    <table id="priceTable">
+      <thead>
+        <tr>
+          <th>Modelo</th>
+          <th>FRP</th>
+          <th>T2</th>
+          <th>Flash</th>
+          <th>FRP + T2</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>G4 Play / G4 Plus</td><td>$3.500</td><td>$100.000</td><td>$3.500</td><td>$6.000</td></tr>
+        <tr><td>G5 / G5 Plus</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$6.500</td></tr>
+        <tr><td>G6 / G6 Play</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$6.500</td></tr>
+        <tr><td>G7 / G7 Power / G7 Play</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$6.500</td></tr>
+        <tr><td>G8 / G8 Plus / G8 Power</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$6.500</td></tr>
+        <tr><td>G9 / G9 Power / G9 Play</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$6.500</td></tr>
+        <tr><td>E5 / E5 Play / E5 Plus</td><td>$3.500</td><td>$4.000</td><td>$3.500</td><td>$6.000</td></tr>
+        <tr><td>E6 / E6 Play / E6 Plus</td><td>$3.500</td><td>$4.000</td><td>$3.500</td><td>$6.000</td></tr>
+        <tr><td>E7 / E7i Power / E7 Plus</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$6.500</td></tr>
+      </tbody>
+    </table>
+  </div>
 
   <script>
     const input = document.getElementById('searchInput');
@@ -139,7 +194,7 @@
   <a href="index.html" class="btn-back">← Volver al Inicio</a>
 
   <footer>
-    <div style="display: flex; justify-content: center; align-items: center; gap: 20px;">
+    <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
       <a href="https://wa.me/5491168577446" target="_blank" style="display: flex; align-items: center; text-decoration: none; color: black;">
         <img src="img/whatsapp.png" alt="WhatsApp" style="width: 20px; height: 20px; margin-right: 8px;">
         +54 9 11 6857-7446
