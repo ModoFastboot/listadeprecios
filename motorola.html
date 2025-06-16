@@ -86,11 +86,8 @@
       text-align: center;
       font-size: 0.9rem;
       color: #555;
-    }
-
-    footer a {
-      color: #1565c0;
-      text-decoration: none;
+      display: flex;
+      justify-content: center;
     }
 
     footer div {
@@ -99,6 +96,13 @@
       align-items: center;
       gap: 20px;
       flex-wrap: wrap;
+    }
+
+    footer a {
+      color: #1565c0;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
     }
 
     @media (max-width: 600px) {
@@ -154,12 +158,12 @@
 
       footer div {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
         gap: 15px;
       }
 
       footer a {
-        justify-content: flex-start;
+        justify-content: center;
         color: black;
       }
     }
@@ -223,5 +227,6 @@
   </footer>
 </body>
 </html>
+
 
 
