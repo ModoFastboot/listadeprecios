@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Reparación de Software - Inicio</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #e6f0fb;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    header {
+      background-color: #00aaff;
+      color: white;
+      width: 100%;
+      padding: 20px 0;
+      text-align: center;
+      font-weight: bold;
+      font-size: 1.8rem;
+      letter-spacing: 1px;
+    }
+    .button-container {
+      margin-top: 50px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+    }
+    .brand-button {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: white;
+      border: 2px solid #00aaff;
+      border-radius: 12px;
+      padding: 20px 30px;
+      width: 160px;
+      text-decoration: none;
+      color: black;
+      font-size: 1.1rem;
+      font-weight: 600;
+      box-shadow: 0 0 5px rgba(0,170,255,0.4);
+      transition: transform 0.3s ease; /* ← Esta línea */
+    }
+    .brand-button:hover {
+      background-color: #00aaff;
+      color: white;
+      box-shadow: 0 0 15px rgba(0,170,255,0.8);
+      transform: scale(1.1); /* ← Aumenta un poco más si querés */
+    }
+    .brand-button img {
+      width: 120px;
+      height: auto;
+      margin-bottom: 15px;
+    }
+    footer {
+      margin-top: 60px;
+      font-size: 0.9rem;
+      color: #555;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <header>Reparación de Software - Seleccioná la Marca</header>
+  <div class="button-container">
+    <a href="samsung.html" class="brand-button">
+      <img src="img/samsung.png" alt="Samsung" />
+  
+    </a>
+    <a href="motorola.html" class="brand-button">
+      <img src="img/motorola.png" alt="Motorola" />
+    
+    </a>
+    <a href="xiaomi.html" class="brand-button">
+      <img src="img/xiaomi.png" alt="Xiaomi" />
+      Xiaomi
+    </a>
+    <a href="iphone.html" class="brand-button">
+      <img src="img/iphone.png" alt="iPhone" />
+    
+    </a>
+  </div>
+  <footer>
+    Contacto WhatsApp: 
+    <a href="https://wa.me/5491168577446" target="_blank" rel="noopener" style="color:#00aaff;">+54 9 11 6857-7446</a> | 
+    <a href="https://wa.me/5491123177277" target="_blank" rel="noopener" style="color:#00aaff;">+54 9 11 2317-7277</a>
+  </footer>
+</body>
+</html>
