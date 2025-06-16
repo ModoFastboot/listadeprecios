@@ -22,15 +22,34 @@
       margin-bottom: 30px;
     }
 
+    .search-container {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    #searchInput {
+      padding: 10px;
+      width: 300px;
+      border-radius: 5px;
+      border: 1px solid #aaa;
+      font-size: 1rem;
+    }
+
+    .table-wrapper {
+      overflow-x: auto;
+      max-width: 100%;
+    }
+
     table {
       width: 100%;
-      max-width: 800px;
+      max-width: 900px;
       margin: auto;
       border-collapse: collapse;
       background-color: white;
       border-radius: 8px;
       overflow: hidden;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      min-width: 600px;
     }
 
     th, td {
@@ -51,19 +70,6 @@
 
     tr:hover {
       background-color: #f0f8ff;
-    }
-
-    .search-container {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
-    #searchInput {
-      padding: 10px;
-      width: 300px;
-      border-radius: 5px;
-      border: 1px solid #aaa;
-      font-size: 1rem;
     }
 
     .btn-back {
@@ -94,6 +100,21 @@
       color: #00aaff;
       text-decoration: none;
     }
+
+    @media (max-width: 600px) {
+      #searchInput {
+        width: 90%;
+      }
+
+      .table-wrapper {
+        margin: 0 -20px;
+      }
+
+      footer div {
+        flex-direction: column;
+        gap: 10px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -103,32 +124,34 @@
     <input type="text" id="searchInput" placeholder="Buscar modelo..." />
   </div>
 
-  <table id="priceTable">
-    <thead>
-      <tr>
-        <th>Modelo</th>
-        <th>FRP</th>
-        <th>T2</th>
-        <th>Flash</th>
-        <th>FRP + T2</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr><td>A3 2016 (SM-A310M)</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$7.000</td></tr>
-      <tr><td>A5 2016 (SM-A510M)</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$7.000</td></tr>
-      <tr><td>A7 2016 (SM-A710M)</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$7.000</td></tr>
-      <tr><td>Grand Prime (SM-G530M, SM-G531M)</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$7.000</td></tr>
-      <tr><td>J1 2016 (SM-J100MU)</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$7.000</td></tr>
-      <tr><td>J1 Ace (SM-J110M, SM-J111M)</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$7.000</td></tr>
-      <tr><td>J1 Mini (SM-J105M)</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$7.000</td></tr>
-      <tr><td>J1 Mini Prime (SM-J106M)</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$7.000</td></tr>
-      <tr><td>J2/J2 Pro (SM-J200M / SM-J250M)</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$7.000</td></tr>
-      <tr><td>J2 Prime (SM-G532M)</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$7.000</td></tr>
-      <tr><td>J3 2016 (SM-J320M)</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$7.000</td></tr>
-      <tr><td>J7 2015 (SM-J700M)</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$7.000</td></tr>
-      <tr><td>J7 2016 (SM-J710MN)</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$7.000</td></tr>
-    </tbody>
-  </table>
+  <div class="table-wrapper">
+    <table id="priceTable">
+      <thead>
+        <tr>
+          <th>Modelo</th>
+          <th>FRP</th>
+          <th>T2</th>
+          <th>Flash</th>
+          <th>FRP + T2</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>A3 2016 (SM-A310M)</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$7.000</td></tr>
+        <tr><td>A5 2016 (SM-A510M)</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$7.000</td></tr>
+        <tr><td>A7 2016 (SM-A710M)</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$7.000</td></tr>
+        <tr><td>Grand Prime (SM-G530M, SM-G531M)</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$7.000</td></tr>
+        <tr><td>J1 2016 (SM-J100MU)</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$7.000</td></tr>
+        <tr><td>J1 Ace (SM-J110M, SM-J111M)</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$7.000</td></tr>
+        <tr><td>J1 Mini (SM-J105M)</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$7.000</td></tr>
+        <tr><td>J1 Mini Prime (SM-J106M)</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$7.000</td></tr>
+        <tr><td>J2/J2 Pro (SM-J200M / SM-J250M)</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$7.000</td></tr>
+        <tr><td>J2 Prime (SM-G532M)</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$7.000</td></tr>
+        <tr><td>J3 2016 (SM-J320M)</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$7.000</td></tr>
+        <tr><td>J7 2015 (SM-J700M)</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$7.000</td></tr>
+        <tr><td>J7 2016 (SM-J710MN)</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$7.000</td></tr>
+      </tbody>
+    </table>
+  </div>
 
   <script>
     const input = document.getElementById('searchInput');
@@ -147,7 +170,7 @@
   <a href="index.html" class="btn-back">← Volver al Inicio</a>
 
   <footer>
-    <div style="display: flex; justify-content: center; align-items: center; gap: 20px;">
+    <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
       <a href="https://wa.me/5491168577446" target="_blank" style="display: flex; align-items: center; text-decoration: none; color: black;">
         <img src="img/whatsapp.png" alt="WhatsApp" style="width: 20px; height: 20px; margin-right: 8px;">
         +54 9 11 6857-7446
@@ -160,5 +183,6 @@
   </footer>
 </body>
 </html>
+
 
 
