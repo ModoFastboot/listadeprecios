@@ -32,6 +32,11 @@
       font-size: 1rem;
     }
 
+    .table-wrapper {
+      overflow-x: auto;
+      max-width: 100%;
+    }
+
     table {
       width: 100%;
       max-width: 900px;
@@ -41,6 +46,7 @@
       border-radius: 8px;
       overflow: hidden;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      min-width: 600px; /* importante para mantener formato al hacer scroll */
     }
 
     th, td {
@@ -91,6 +97,22 @@
       color: #f57c00;
       text-decoration: none;
     }
+
+    /* Responsive: para pantallas chicas */
+    @media (max-width: 600px) {
+      #searchInput {
+        width: 90%;
+      }
+
+      .table-wrapper {
+        margin: 0 -20px;
+      }
+
+      footer div {
+        flex-direction: column;
+        gap: 10px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -99,29 +121,32 @@
   <!-- Buscador -->
   <input type="text" id="searchInput" placeholder="Buscar modelo..." />
 
-  <table id="priceTable">
-    <thead>
-      <tr>
-        <th>Modelo</th>
-        <th>FRP</th>
-        <th>T2</th>
-        <th>Flash</th>
-        <th>Cuenta Mi</th>
-        <th>FRP + T2</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr><td>Redmi Note 7</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$5.000</td><td>$6.500</td></tr>
-      <tr><td>Redmi Note 8 / 8T</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$5.500</td><td>$6.500</td></tr>
-      <tr><td>Redmi Note 9 / 9S / 9T</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$6.000</td><td>$6.500</td></tr>
-      <tr><td>Redmi Note 10 / 10 Pro</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$6.000</td><td>$6.500</td></tr>
-      <tr><td>Redmi 9 / 9A / 9C</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$5.000</td><td>$6.000</td></tr>
-      <tr><td>Redmi 10 / 10C</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$5.500</td><td>$6.000</td></tr>
-      <tr><td>Poco X3 / X3 Pro</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$6.000</td><td>$6.500</td></tr>
-      <tr><td>Poco M3 / M4 / M5</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$5.500</td><td>$6.000</td></tr>
-      <tr><td>Mi A2 / Mi A3</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$6.000</td><td>$6.500</td></tr>
-    </tbody>
-  </table>
+  <!-- Contenedor de scroll -->
+  <div class="table-wrapper">
+    <table id="priceTable">
+      <thead>
+        <tr>
+          <th>Modelo</th>
+          <th>FRP</th>
+          <th>T2</th>
+          <th>Flash</th>
+          <th>Cuenta Mi</th>
+          <th>FRP + T2</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Redmi Note 7</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$5.000</td><td>$6.500</td></tr>
+        <tr><td>Redmi Note 8 / 8T</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$5.500</td><td>$6.500</td></tr>
+        <tr><td>Redmi Note 9 / 9S / 9T</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$6.000</td><td>$6.500</td></tr>
+        <tr><td>Redmi Note 10 / 10 Pro</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$6.000</td><td>$6.500</td></tr>
+        <tr><td>Redmi 9 / 9A / 9C</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$5.000</td><td>$6.000</td></tr>
+        <tr><td>Redmi 10 / 10C</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$5.500</td><td>$6.000</td></tr>
+        <tr><td>Poco X3 / X3 Pro</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$6.000</td><td>$6.500</td></tr>
+        <tr><td>Poco M3 / M4 / M5</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$5.500</td><td>$6.000</td></tr>
+        <tr><td>Mi A2 / Mi A3</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$6.000</td><td>$6.500</td></tr>
+      </tbody>
+    </table>
+  </div>
 
   <script>
     const input = document.getElementById('searchInput');
@@ -140,7 +165,7 @@
   <a href="index.html" class="btn-back">← Volver al Inicio</a>
 
   <footer>
-    <div style="display: flex; justify-content: center; align-items: center; gap: 20px;">
+    <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
       <a href="https://wa.me/5491168577446" target="_blank" style="display: flex; align-items: center; text-decoration: none; color: black;">
         <img src="img/whatsapp.png" alt="WhatsApp" style="width: 20px; height: 20px; margin-right: 8px;">
         +54 9 11 6857-7446
@@ -153,3 +178,4 @@
   </footer>
 </body>
 </html>
+
