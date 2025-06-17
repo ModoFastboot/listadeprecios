@@ -95,6 +95,8 @@
       text-decoration: none;
     }
   </style>
+  <!-- PapaParse -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
 </head>
 <body>
   <header>Samsung - Reparación de Software</header>
@@ -113,30 +115,43 @@
         <th>FRP + T2</th>
       </tr>
     </thead>
-    <tbody>
-      <tr><td>A3 2016 (SM-A310M)</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$7.000</td></tr>
-      <tr><td>A5 2016 (SM-A510M)</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$7.000</td></tr>
-      <tr><td>A7 2016 (SM-A710M)</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$7.000</td></tr>
-      <tr><td>Grand Prime (SM-G530M, SM-G531M)</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$7.000</td></tr>
-      <tr><td>J1 2016 (SM-J100MU)</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$7.000</td></tr>
-      <tr><td>J1 Ace (SM-J110M, SM-J111M)</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$7.000</td></tr>
-      <tr><td>J1 Mini (SM-J105M)</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$7.000</td></tr>
-      <tr><td>J1 Mini Prime (SM-J106M)</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$7.000</td></tr>
-      <tr><td>J2/J2 Pro (SM-J200M / SM-J250M)</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$7.000</td></tr>
-      <tr><td>J2 Prime (SM-G532M)</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$7.000</td></tr>
-      <tr><td>J3 2016 (SM-J320M)</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$7.000</td></tr>
-      <tr><td>J7 2015 (SM-J700M)</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$7.000</td></tr>
-      <tr><td>J7 2016 (SM-J710MN)</td><td>$4.000</td><td>$4.000</td><td>$4.000</td><td>$7.000</td></tr>
-    </tbody>
+    <tbody></tbody>
   </table>
 
   <script>
+    const sheetURL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTStKFBbZRwbJA9lgsrZfgJC7kF4bm1ud3isN_SBN619K_jXnpF40T1Y-bj5fTaKrB5pi1wzMy6OHEd/pub?output=csv';
+
+    fetch(sheetURL)
+      .then(response => response.text())
+      .then(csv => {
+        Papa.parse(csv, {
+          header: true,
+          skipEmptyLines: true,
+          complete: function(results) {
+            const data = results.data;
+            const tbody = document.querySelector("#priceTable tbody");
+            tbody.innerHTML = '';
+            data.forEach(row => {
+              const tr = document.createElement("tr");
+              tr.innerHTML = `
+                <td>${row['Modelo']}</td>
+                <td>$${row['FRP']}</td>
+                <td>$${row['T2']}</td>
+                <td>$${row['Flash']}</td>
+                <td>$${row['FRP + T2']}</td>
+              `;
+              tbody.appendChild(tr);
+            });
+          }
+        });
+      });
+
     const input = document.getElementById('searchInput');
     const table = document.getElementById('priceTable');
     input.addEventListener('keyup', () => {
       const filter = input.value.toLowerCase();
       const rows = table.tBodies[0].rows;
-      for(let i=0; i < rows.length; i++) {
+      for(let i = 0; i < rows.length; i++) {
         const modelCell = rows[i].cells[0];
         const text = modelCell.textContent.toLowerCase();
         rows[i].style.display = text.includes(filter) ? '' : 'none';
@@ -160,6 +175,7 @@
   </footer>
 </body>
 </html>
+
 
 
 
