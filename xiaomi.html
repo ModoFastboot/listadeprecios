@@ -191,8 +191,8 @@
 
             // Si no es la columna Modelo y es numérico, agregar $
             if (i > 0 && col && !isNaN(col)) {
-              td.textContent = `$${col}`;
-            } else {
+  td.textContent = `$${parseInt(col)}`;
+} else {
               td.textContent = col;
             }
 
