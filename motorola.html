@@ -179,7 +179,7 @@
           headers.forEach((h, i) => {
             const td = document.createElement('td');
             td.setAttribute('data-label', h);
-            td.textContent = cols[i] ? (i === 0 ? cols[i] : `$${cols[i]}`) : '-';
+            td.textContent = cols[i] ? (i === 0 ? cols[i] : `${cols[i]}`) : '-';
             tr.appendChild(td);
           });
           tableBody.appendChild(tr);
