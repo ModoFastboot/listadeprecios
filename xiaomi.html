@@ -166,28 +166,51 @@
         <th>FRP + T2</th>
       </tr>
     </thead>
-    <tbody>
-      <tr><td data-label="Modelo">Redmi Note 7</td><td data-label="FRP">4000</td><td data-label="T2">4000</td><td data-label="Flash">4000</td><td data-label="Cuenta Mi">5000</td><td data-label="FRP + T2">6500</td></tr>
-      <tr><td data-label="Modelo">Redmi Note 8 / 8T</td><td data-label="FRP">4000</td><td data-label="T2">4000</td><td data-label="Flash">4000</td><td data-label="Cuenta Mi">5500</td><td data-label="FRP + T2">6500</td></tr>
-      <tr><td data-label="Modelo">Redmi Note 9 / 9S / 9T</td><td data-label="FRP">4000</td><td data-label="T2">4000</td><td data-label="Flash">4000</td><td data-label="Cuenta Mi">6000</td><td data-label="FRP + T2">6500</td></tr>
-      <tr><td data-label="Modelo">Redmi 9 / 9A / 9C</td><td data-label="FRP">4000</td><td data-label="T2">4000</td><td data-label="Flash">4000</td><td data-label="Cuenta Mi">5000</td><td data-label="FRP + T2">6000</td></tr>
-      <tr><td data-label="Modelo">Redmi 10 / 10C</td><td data-label="FRP">4000</td><td data-label="T2">4000</td><td data-label="Flash">4000</td><td data-label="Cuenta Mi">5500</td><td data-label="FRP + T2">6000</td></tr>
-      <tr><td data-label="Modelo">Poco X3 / X3 Pro</td><td data-label="FRP">4000</td><td data-label="T2">4000</td><td data-label="Flash">4000</td><td data-label="Cuenta Mi">6000</td><td data-label="FRP + T2">6500</td></tr>
-      <tr><td data-label="Modelo">Poco M3 / M4 / M5</td><td data-label="FRP">4000</td><td data-label="T2">4000</td><td data-label="Flash">4000</td><td data-label="Cuenta Mi">5500</td><td data-label="FRP + T2">6000</td></tr>
-      <tr><td data-label="Modelo">Mi A2 / Mi A3</td><td data-label="FRP">4000</td><td data-label="T2">4000</td><td data-label="Flash">4000</td><td data-label="Cuenta Mi">6000</td><td data-label="FRP + T2">6500</td></tr>
+    <tbody id="dataBody">
+      <!-- Cargado dinámicamente desde Google Sheets -->
     </tbody>
   </table>
 
   <script>
+    const SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTStKFBbZRwbJA9lgsrZfgJC7kF4bm1ud3isN_SBN619K_jXnpF40T1Y-bj5fTaKrB5pi1wzMy6OHEd/pub?gid=1424853674&single=true&output=csv";
+
     const input = document.getElementById('searchInput');
-    const table = document.getElementById('priceTable');
+    const tableBody = document.getElementById('dataBody');
+
+    fetch(SHEET_URL)
+      .then(response => response.text())
+      .then(csvText => {
+        const rows = csvText.trim().split('\n').slice(1); // ignorar encabezado
+        for (let row of rows) {
+          const cols = row.split(',').map(cell => cell.trim().replace('$', ''));
+          if (cols.length < 6) continue;
+
+          const tr = document.createElement('tr');
+          cols.forEach((col, i) => {
+            const td = document.createElement('td');
+            td.textContent = col;
+            td.setAttribute('data-label', ['Modelo', 'FRP', 'T2', 'Flash', 'Cuenta Mi', 'FRP + T2'][i]);
+            tr.appendChild(td);
+          });
+          tableBody.appendChild(tr);
+        }
+      })
+      .catch(error => {
+        console.error("Error cargando datos:", error);
+        const tr = document.createElement('tr');
+        const td = document.createElement('td');
+        td.colSpan = 6;
+        td.textContent = "Error al cargar los datos.";
+        tr.appendChild(td);
+        tableBody.appendChild(tr);
+      });
+
     input.addEventListener('keyup', () => {
       const filter = input.value.toLowerCase();
-      const rows = table.tBodies[0].rows;
-      for (let i = 0; i < rows.length; i++) {
-        const modelCell = rows[i].cells[0];
-        const text = modelCell.textContent.toLowerCase();
-        rows[i].style.display = text.includes(filter) ? '' : 'none';
+      const rows = tableBody.getElementsByTagName('tr');
+      for (let row of rows) {
+        const model = row.cells[0].textContent.toLowerCase();
+        row.style.display = model.includes(filter) ? '' : 'none';
       }
     });
   </script>
