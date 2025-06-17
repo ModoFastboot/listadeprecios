@@ -167,7 +167,7 @@
       </tr>
     </thead>
     <tbody id="dataBody">
-      <!-- Cargado dinámicamente desde Google Sheets -->
+      <!-- Cargado dinámicamente -->
     </tbody>
   </table>
 
@@ -180,22 +180,25 @@
     fetch(SHEET_URL)
       .then(response => response.text())
       .then(csvText => {
-        const rows = csvText.trim().split('\n').slice(1); // ignorar encabezado
+        const rows = csvText.trim().split('\n').slice(1);
         for (let row of rows) {
-          const cols = row.split(',').map(cell => cell.replace(/["$]/g, '').trim()).slice(0, 6);
-          if (cols.every(col => col === '')) continue;
+          // Divide en columnas considerando comillas
+          const cols = row.match(/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g);
+          if (!cols || cols.length < 6) continue;
 
           const tr = document.createElement('tr');
           cols.forEach((col, i) => {
-            const td = document.createElement('td');
+            col = col.replace(/^"|"$/g, '').trim(); // quitar comillas
+            let display = col;
 
-            // Agregar $ solo a columnas de precio y eliminar decimales
-            if (i > 0 && col && !isNaN(col)) {
-              td.textContent = `$${parseInt(col)}`;
-            } else {
-              td.textContent = col;
+            if (i > 0) {
+              // Para celdas de precios: quitar centavos, dejar solo número entero
+              const num = parseInt(col.replace(/[^\d]/g, ''), 10);
+              display = `$${num.toLocaleString()}`;
             }
 
+            const td = document.createElement('td');
+            td.textContent = display;
             td.setAttribute('data-label', ['Modelo', 'FRP', 'T2', 'Flash', 'Cuenta Mi', 'FRP + T2'][i]);
             tr.appendChild(td);
           });
@@ -238,5 +241,4 @@
   </footer>
 </body>
 </html>
-
 
