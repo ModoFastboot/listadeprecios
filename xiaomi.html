@@ -189,10 +189,10 @@
           cols.forEach((col, i) => {
             const td = document.createElement('td');
 
-            // Si no es la columna Modelo y es numérico, agregar $
+            // Agregar $ solo a columnas de precio y eliminar decimales
             if (i > 0 && col && !isNaN(col)) {
-  td.textContent = `$${col}`;
-} else {
+              td.textContent = `$${parseInt(col)}`;
+            } else {
               td.textContent = col;
             }
 
