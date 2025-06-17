@@ -11,7 +11,6 @@
       padding: 20px;
       overflow-x: hidden;
     }
-
     header {
       background-color: #1976d2;
       color: white;
@@ -22,7 +21,6 @@
       border-radius: 10px;
       margin-bottom: 30px;
     }
-
     #searchInput {
       display: block;
       margin: 0 auto 20px auto;
@@ -32,7 +30,6 @@
       border-radius: 8px;
       font-size: 1rem;
     }
-
     table {
       width: 100%;
       max-width: 900px;
@@ -43,27 +40,22 @@
       overflow: hidden;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
-
     th, td {
       padding: 12px 15px;
       text-align: center;
       border: 1px solid #ccc;
     }
-
     th {
       background-color: #1565c0;
       color: white;
     }
-
     td:first-child {
       text-align: left;
       font-weight: bold;
     }
-
     tr:hover {
       background-color: #e3f2fd;
     }
-
     .btn-back {
       display: block;
       width: max-content;
@@ -76,11 +68,9 @@
       font-weight: bold;
       transition: 0.3s;
     }
-
     .btn-back:hover {
       background-color: #1976d2;
     }
-
     footer {
       margin-top: 40px;
       text-align: center;
@@ -89,7 +79,6 @@
       display: flex;
       justify-content: center;
     }
-
     footer div {
       display: flex;
       justify-content: center;
@@ -97,29 +86,16 @@
       gap: 20px;
       flex-wrap: wrap;
     }
-
     footer a {
       color: #1565c0;
       text-decoration: none;
       display: flex;
       align-items: center;
     }
-
     @media (max-width: 600px) {
-      #searchInput {
-        width: 90%;
-      }
-
-      table, thead, tbody, th, td, tr {
-        display: block;
-      }
-
-      thead tr {
-        position: absolute;
-        top: -9999px;
-        left: -9999px;
-      }
-
+      #searchInput { width: 90%; }
+      table, thead, tbody, th, td, tr { display: block; }
+      thead tr { position: absolute; top: -9999px; left: -9999px; }
       tr {
         margin-bottom: 20px;
         background: white;
@@ -127,7 +103,6 @@
         box-shadow: 0 0 8px rgba(0,0,0,0.1);
         padding: 15px;
       }
-
       td {
         border: none;
         border-bottom: 1px solid #eee;
@@ -137,11 +112,7 @@
         font-size: 0.95rem;
         color: #000;
       }
-
-      td:last-child {
-        border-bottom: 0;
-      }
-
+      td:last-child { border-bottom: 0; }
       td::before {
         position: absolute;
         top: 15px;
@@ -155,19 +126,15 @@
         font-size: 0.9rem;
         content: attr(data-label);
       }
-
       footer div {
         flex-direction: column;
         align-items: center;
         gap: 15px;
       }
-
-      footer a {
-        justify-content: center;
-        color: black;
-      }
+      footer a { justify-content: center; color: black; }
     }
   </style>
+  <!-- No library needed: CSV simple split -->
 </head>
 <body>
   <header>Motorola - Reparación de Software</header>
@@ -184,63 +151,56 @@
         <th>FRP+T2</th>
       </tr>
     </thead>
-    <tbody>
-      <tr><td data-label="Modelo">Moto C (XT1756)	</td><td data-label="FRP">$4.000</td><td data-label="Flash">$4.000</td><td data-label="T2">$5.000</td><td data-label="FRP+T2">$7.000</td></tr>
-      <tr><td data-label="Modelo">Moto C Plus (XT1725)	</td><td data-label="FRP">$4.000</td><td data-label="Flash">$4.000</td><td data-label="T2">$5.000</td><td data-label="FRP+T2">$7.000</td></tr>
-      <tr><td data-label="Modelo">Moto E4 Plus (XT1772)	</td><td data-label="FRP">$4.000</td><td data-label="Flash">$4.000</td><td data-label="T2">$5.000</td><td data-label="FRP+T2">$7.000</td></tr>
-      <tr><td data-label="Modelo">Moto E6 Plus(XT2025)	</td><td data-label="FRP">$5.000</td><td data-label="Flash">$5.000</td><td data-label="T2">$7.000</td><td data-label="FRP+T2">$10.000</td></tr>
-      <tr><td data-label="Modelo">Moto E6s (XT2053)	</td><td data-label="FRP">$5.000</td><td data-label="Flash">$5.000</td><td data-label="T2">$20.000</td><td data-label="FRP+T2">$25.000</td></tr>
-      <tr><td data-label="Modelo">Moto E6i (XT2053)	</td><td data-label="FRP">$5.000</td><td data-label="Flash">$5.000</td><td data-label="T2">$20.000</td><td data-label="FRP+T2">$25.000</td></tr>
-      <tr><td data-label="Modelo">Moto E6 Play (XT2029)	</td><td data-label="FRP">$5.000</td><td data-label="Flash">$5.000</td><td data-label="T2">$20.000</td><td data-label="FRP+T2">$25.000</td></tr>
-      <tr><td data-label="Modelo">Moto E7 (XT2095) </td><td data-label="FRP">$5.000</td><td data-label="Flash">$5.000</td><td data-label="T2">$20.000</td><td data-label="FRP+T2">$25.000</td></tr>
-      <tr><td data-label="Modelo">Moto E7i Power (XT2097)	</td><td data-label="FRP">$5.000</td><td data-label="Flash">$5.000</td><td data-label="T2">$20.000</td><td data-label="FRP+T2">$25.000</td></tr>
-      <tr><td data-label="Modelo">Moto E20 (XT2155)	</td><td data-label="FRP">$5.000</td><td data-label="Flash">$5.000</td><td data-label="T2">$20.000</td><td data-label="FRP+T2">$25.000</td></tr>
-      <tr><td data-label="Modelo">Moto E22 (XT2239)	</td><td data-label="FRP">$5.000</td><td data-label="Flash">$5.000</td><td data-label="T2">$20.000</td><td data-label="FRP+T2">$25.000</td></tr>
-      <tr><td data-label="Modelo">Moto E22i (XT2239)	</td><td data-label="FRP">$5.000</td><td data-label="Flash">$5.000</td><td data-label="T2">$20.000</td><td data-label="FRP+T2">$25.000</td></tr>
-      <tr><td data-label="Modelo">Moto E32 (XT2229)	</td><td data-label="FRP">$5.000</td><td data-label="Flash">$5.000</td><td data-label="T2">$20.000</td><td data-label="FRP+T2">$25.000</td></tr>
-      <tr><td data-label="Modelo">Moto E32s (XT2229) </td><td data-label="FRP">$5.000</td><td data-label="Flash">$5.000</td><td data-label="T2">$20.000</td><td data-label="FRP+T2">$25.000</td></tr>
-      <tr><td data-label="Modelo">Moto E40 (XT2159)	</td><td data-label="FRP">$5.000</td><td data-label="Flash">$5.000</td><td data-label="T2">$20.000</td><td data-label="FRP+T2">$25.000</td></tr>
-      <tr><td data-label="Modelo">Moto G20 (XT2128)	</td><td data-label="FRP">$5.000</td><td data-label="Flash">$5.000</td><td data-label="T2">$20.000</td><td data-label="FRP+T2">$25.000</td></tr>
-      <tr><td data-label="Modelo">Moto G8 Power Lite (XT2055)	</td><td data-label="FRP">$5.000</td><td data-label="Flash">$5.000</td><td data-label="T2">$20.000</td><td data-label="FRP+T2">$25.000</td></tr>
-      <tr><td data-label="Modelo">Moto G22 (XT2231)	</td><td data-label="FRP">$5.000</td><td data-label="Flash">$5.000</td><td data-label="T2">$20.000</td><td data-label="FRP+T2">$25.000</td></tr>
-      <tr><td data-label="Modelo">Moto G4 (XT1624)	</td><td data-label="FRP">$4.000</td><td data-label="Flash">$4.000</td><td data-label="T2">-</td><td data-label="FRP+T2">-</td></tr>
-      <tr><td data-label="Modelo">Moto G4 Play (XT1601)	</td><td data-label="FRP">$4.000</td><td data-label="Flash">$4.000</td><td data-label="T2">-</td><td data-label="FRP+T2">-</td></tr>
-      <tr><td data-label="Modelo">Moto G4 Plus (XT1642)	</td><td data-label="FRP">$4.000</td><td data-label="Flash">$4.000</td><td data-label="T2">-</td><td data-label="FRP+T2">-</td></tr>
-      <tr><td data-label="Modelo">MMoto G5 (XT1670)	</td><td data-label="FRP">$4.000</td><td data-label="Flash">$4.000</td><td data-label="T2">-</td><td data-label="FRP+T2">-</td></tr>
-      <tr><td data-label="Modelo">Moto G5 Plus (XT1680)	</td><td data-label="FRP">$4.000</td><td data-label="Flash">$4.000</td><td data-label="T2">-</td><td data-label="FRP+T2">-</td></tr>
-      <tr><td data-label="Modelo">Moto Z (XT1650)	</td><td data-label="FRP">$4.000</td><td data-label="Flash">$4.000</td><td data-label="T2">-</td><td data-label="FRP+T2">-</td></tr>
-      <tr><td data-label="Modelo">Moto Z2 Play (XT1710)	</td><td data-label="FRP">$4.000</td><td data-label="Flash">$4.000</td><td data-label="T2">-</td><td data-label="FRP+T2">-</td></tr>
-      <tr><td data-label="Modelo">Moto Z4</td><td data-label="FRP">$4.500</td><td data-label="Flash">$4.000</td><td data-label="T2">$6.000</td><td data-label="FRP+T2">$3.900</td></tr>
-      <tr><td data-label="Modelo">Moto One</td><td data-label="FRP">$4.400</td><td data-label="Flash">$3.900</td><td data-label="T2">$5.900</td><td data-label="FRP+T2">$3.900</td></tr>
-      <tr><td data-label="Modelo">Moto G Power</td><td data-label="FRP">$4.600</td><td data-label="Flash">$4.100</td><td data-label="T2">$6.100</td><td data-label="FRP+T2">$3.900</td></tr>
-      <tr><td data-label="Modelo">Moto G Stylus</td><td data-label="FRP">$4.700</td><td data-label="Flash">$4.200</td><td data-label="T2">$6.200</td><td data-label="FRP+T2">$3.900</td></tr>
-    </tbody>
+    <tbody id="tableBody"></tbody>
   </table>
 
   <script>
     const input = document.getElementById('searchInput');
-    const table = document.getElementById('priceTable');
+    const tableBody = document.getElementById('tableBody');
+
+    // Filtro de búsqueda
     input.addEventListener('keyup', () => {
       const filter = input.value.toLowerCase();
-      const rows = table.tBodies[0].rows;
-      for (let i = 0; i < rows.length; i++) {
-        const modelCell = rows[i].cells[0];
-        const text = modelCell.textContent.toLowerCase();
-        rows[i].style.display = text.includes(filter) ? '' : 'none';
+      for (let row of tableBody.rows) {
+        const txt = row.cells[0].textContent.toLowerCase();
+        row.style.display = txt.includes(filter) ? '' : 'none';
       }
     });
+
+    // Cargar datos desde Google Sheets
+    fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vTStKFBbZRwbJA9lgsrZfgJC7kF4bm1ud3isN_SBN619K_jXnpF40T1Y-bj5fTaKrB5pi1wzMy6OHEd/pub?gid=1290146229&single=true&output=csv')
+      .then(res => res.text())
+      .then(csv => {
+        const lines = csv.trim().split('\n');
+        const headers = lines.shift().split(',');
+        lines.forEach(line => {
+          const cols = line.split(',');
+          const tr = document.createElement('tr');
+          headers.forEach((h, i) => {
+            const td = document.createElement('td');
+            td.setAttribute('data-label', h);
+            td.textContent = cols[i] ? `$${cols[i]}` : '-';
+            tr.appendChild(td);
+          });
+          tableBody.appendChild(tr);
+        });
+      })
+      .catch(e => {
+        console.error(e);
+        tableBody.innerHTML = `<tr><td colspan="5" style="text-align:center;color:red;">Error al cargar precios</td></tr>`;
+      });
   </script>
 
   <a href="index.html" class="btn-back">← Volver al Inicio</a>
 
   <footer>
     <div>
-      <a href="https://wa.me/5491168577446" target="_blank" style="display: flex; align-items: center; text-decoration: none;">
-        <img src="img/whatsapp.png" alt="WhatsApp" style="width: 20px; height: 20px; margin-right: 8px;">
+      <a href="https://wa.me/5491168577446" target="_blank">
+        <img src="img/whatsapp.png" alt="WhatsApp" style="width:20px;height:20px;margin-right:8px;">
         +54 9 11 6857-7446
       </a>
-      <a href="https://wa.me/5491123177277" target="_blank" style="display: flex; align-items: center; text-decoration: none;">
-        <img src="img/whatsapp.png" alt="WhatsApp" style="width: 20px; height: 20px; margin-right: 8px;">
+      <a href="https://wa.me/5491123177277" target="_blank">
+        <img src="img/whatsapp.png" alt="WhatsApp" style="width:20px;height:20px;margin-right:8px;">
         +54 9 11 2317-7277
       </a>
     </div>
