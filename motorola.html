@@ -134,7 +134,6 @@
       footer a { justify-content: center; color: black; }
     }
   </style>
-  <!-- No library needed: CSV simple split -->
 </head>
 <body>
   <header>Motorola - Reparación de Software</header>
@@ -158,7 +157,6 @@
     const input = document.getElementById('searchInput');
     const tableBody = document.getElementById('tableBody');
 
-    // Filtro de búsqueda
     input.addEventListener('keyup', () => {
       const filter = input.value.toLowerCase();
       for (let row of tableBody.rows) {
@@ -167,19 +165,21 @@
       }
     });
 
-    // Cargar datos desde Google Sheets
     fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vTStKFBbZRwbJA9lgsrZfgJC7kF4bm1ud3isN_SBN619K_jXnpF40T1Y-bj5fTaKrB5pi1wzMy6OHEd/pub?gid=1290146229&single=true&output=csv')
       .then(res => res.text())
       .then(csv => {
         const lines = csv.trim().split('\n');
         const headers = lines.shift().split(',');
         lines.forEach(line => {
+          if (!line.trim()) return; // ignora filas vacías
           const cols = line.split(',');
+          if (cols.every(col => !col.trim())) return; // ignora si todas las celdas están vacías
+
           const tr = document.createElement('tr');
           headers.forEach((h, i) => {
             const td = document.createElement('td');
             td.setAttribute('data-label', h);
-            td.textContent = cols[i] ? `$${cols[i]}` : '-';
+            td.textContent = cols[i] ? (i === 0 ? cols[i] : `$${cols[i]}`) : '-';
             tr.appendChild(td);
           });
           tableBody.appendChild(tr);
@@ -207,6 +207,7 @@
   </footer>
 </body>
 </html>
+
 
 
 
