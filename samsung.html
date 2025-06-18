@@ -131,14 +131,18 @@
             const data = results.data;
             const tbody = document.querySelector("#priceTable tbody");
             tbody.innerHTML = '';
+
+            // Mostrar la primera fila en consola para debug
+            console.log("Encabezados detectados:", data[0]);
+
             data.forEach(row => {
               const tr = document.createElement("tr");
               tr.innerHTML = `
-                <td>${row['Modelo']}</td>
-                <td>${row['FRP']}</td>
-                <td>${row['T2']}</td>
-                <td>${row['Flash']}</td>
-                <td>${row['FRP + T2']}</td>
+                <td>${row['Modelo'] || ''}</td>
+                <td>${row['FRP'] || ''}</td>
+                <td>${row['Flash'] || ''}</td>
+                <td>${row['T2'] || ''}</td>
+                <td>${row['FRP + T2'] || ''}</td>
               `;
               tbody.appendChild(tr);
             });
@@ -146,6 +150,7 @@
         });
       });
 
+    // Buscador
     const input = document.getElementById('searchInput');
     const table = document.getElementById('priceTable');
     input.addEventListener('keyup', () => {
@@ -175,6 +180,7 @@
   </footer>
 </body>
 </html>
+
 
 
 
