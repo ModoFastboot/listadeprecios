@@ -5,9 +5,135 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Motorola - Reparación de Software</title>
   <style>
-    /* ... [el mismo estilo que ya tenías, sin cambios] ... */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #e6f0fb;
+      padding: 20px;
+      overflow-x: hidden;
+    }
+    header {
+      background-color: #1976d2;
+      color: white;
+      padding: 15px;
+      text-align: center;
+      font-size: 1.8rem;
+      font-weight: bold;
+      border-radius: 10px;
+      margin-bottom: 30px;
+    }
+    #searchInput {
+      display: block;
+      margin: 0 auto 20px auto;
+      padding: 10px;
+      width: 300px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+    table {
+      width: 100%;
+      max-width: 900px;
+      margin: auto;
+      border-collapse: collapse;
+      background-color: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    th, td {
+      padding: 12px 15px;
+      text-align: center;
+      border: 1px solid #ccc;
+    }
+    th {
+      background-color: #1565c0;
+      color: white;
+    }
+    td:first-child {
+      text-align: left;
+      font-weight: bold;
+    }
+    tr:hover {
+      background-color: #e3f2fd;
+    }
+    .btn-back {
+      display: block;
+      width: max-content;
+      margin: 30px auto 0 auto;
+      background-color: #2196f3;
+      color: white;
+      text-decoration: none;
+      padding: 12px 25px;
+      border-radius: 10px;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+    .btn-back:hover {
+      background-color: #1976d2;
+    }
+    footer {
+      margin-top: 40px;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #555;
+      display: flex;
+      justify-content: center;
+    }
+    footer div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    footer a {
+      color: #1565c0;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+    }
+    @media (max-width: 600px) {
+      #searchInput { width: 90%; }
+      table, thead, tbody, th, td, tr { display: block; }
+      thead tr { position: absolute; top: -9999px; left: -9999px; }
+      tr {
+        margin-bottom: 20px;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 0 8px rgba(0,0,0,0.1);
+        padding: 15px;
+      }
+      td {
+        border: none;
+        border-bottom: 1px solid #eee;
+        position: relative;
+        padding-left: 50%;
+        text-align: left;
+        font-size: 0.95rem;
+        color: #000;
+      }
+      td:last-child { border-bottom: 0; }
+      td::before {
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+        font-weight: bold;
+        text-align: left;
+        color: #555;
+        font-size: 0.9rem;
+        content: attr(data-label);
+      }
+      footer div {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+      }
+      footer a { justify-content: center; color: black; }
+    }
   </style>
-  <!-- PapaParse para leer CSV correctamente -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
 </head>
 <body>
@@ -40,7 +166,7 @@
       }
     });
 
-    const limpiar = str => (str || '').replace(/['"]+/g, '').trim();
+    const limpiar = str => (str || '').replace(/['"\u201c\u201d]+/g, '').trim();
 
     const sheetURL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTStKFBbZRwbJA9lgsrZfgJC7kF4bm1ud3isN_SBN619K_jXnpF40T1Y-bj5fTaKrB5pi1wzMy6OHEd/pub?gid=1290146229&single=true&output=csv';
 
@@ -95,7 +221,6 @@
   </footer>
 </body>
 </html>
-
 
 
 
