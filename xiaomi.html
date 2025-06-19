@@ -8,7 +8,8 @@
     body {
       font-family: Arial, sans-serif;
       background-color: #e6f0fb;
-      padding: 20px;
+      margin: 0;
+      padding: 0;
     }
 
     header {
@@ -18,40 +19,84 @@
       text-align: center;
       font-size: 1.8rem;
       font-weight: bold;
-      border-radius: 10px;
-      margin-bottom: 30px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .search-bar-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      max-width: 800px;
+      margin: 0 auto;
+      flex-wrap: wrap;
+      gap: 10px;
+      background-color: #e6f0fb;
+      padding: 15px 20px;
+      position: sticky;
+      top: 72px;
+      z-index: 999;
+      border-bottom: 1px solid #ccc;
     }
 
     #searchInput {
-      display: block;
-      margin: 0 auto 20px auto;
       padding: 10px;
       width: 300px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
+      border-radius: 5px;
+      border: 1px solid #aaa;
       font-size: 1rem;
+      flex-grow: 1;
+    }
+
+    .table-wrapper {
+      max-width: 900px;
+      margin: 0 auto;
+      overflow: hidden;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      background-color: white;
     }
 
     table {
       width: 100%;
-      max-width: 900px;
-      margin: auto;
       border-collapse: collapse;
-      background-color: white;
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      table-layout: fixed;
     }
 
-    th, td {
+    thead th {
+      background-color: #f57c00;
+      color: white;
       padding: 12px 15px;
       text-align: center;
       border: 1px solid #ccc;
+      position: sticky;
+      top: 140px;
+      z-index: 998;
     }
 
-    th {
-      background-color: #f57c00;
-      color: white;
+    tbody {
+      display: block;
+      max-height: 60vh;
+      overflow-y: auto;
+    }
+
+    tbody tr {
+      display: table;
+      width: 100%;
+      table-layout: fixed;
+    }
+
+    thead {
+      display: table;
+      width: 100%;
+      table-layout: fixed;
+    }
+
+    td {
+      padding: 12px 15px;
+      text-align: center;
+      border: 1px solid #ccc;
     }
 
     td:first-child {
@@ -64,9 +109,6 @@
     }
 
     .btn-back {
-      display: block;
-      width: max-content;
-      margin: 30px auto 0 auto;
       background-color: #ffa726;
       color: white;
       text-decoration: none;
@@ -78,6 +120,29 @@
 
     .btn-back:hover {
       background-color: #fb8c00;
+    }
+
+    .back-and-contact {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 30px;
+      margin: 30px auto 0 auto;
+      flex-wrap: wrap;
+    }
+
+    .whatsapp-link {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: black;
+      font-weight: bold;
+    }
+
+    .whatsapp-link img {
+      width: 20px;
+      height: 20px;
     }
 
     footer {
@@ -93,117 +158,91 @@
     }
 
     @media (max-width: 600px) {
-      #searchInput {
-        width: 90%;
-      }
-
-      table, thead, tbody, th, td, tr {
-        display: block;
-      }
-
-      thead tr {
-        position: absolute;
-        top: -9999px;
-        left: -9999px;
-      }
-
-      tr {
-        margin-bottom: 20px;
-        background: white;
-        border-radius: 8px;
-        box-shadow: 0 0 8px rgba(0,0,0,0.1);
-        padding: 15px;
-      }
-
-      td {
-        border: none;
-        border-bottom: 1px solid #eee;
-        position: relative;
-        padding-left: 50%;
-        text-align: left;
-        font-size: 0.95rem;
-        color: #000;
-      }
-
-      td:last-child {
-        border-bottom: 0;
-      }
-
-      td::before {
-        position: absolute;
-        top: 15px;
-        left: 15px;
-        width: 45%;
-        padding-right: 10px;
-        white-space: nowrap;
-        font-weight: bold;
-        text-align: left;
-        color: #555;
-        font-size: 0.9rem;
-        content: attr(data-label);
-      }
-
-      footer div {
+      .search-bar-container {
         flex-direction: column;
-        gap: 10px;
+        align-items: stretch;
+      }
+
+      #searchInput {
+        width: 100%;
+      }
+
+      thead th, td {
+        font-size: 0.9rem;
+        padding: 10px;
+      }
+
+      .back-and-contact {
+        flex-direction: column;
+        gap: 15px;
       }
     }
   </style>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
 </head>
 <body>
   <header>Xiaomi - Reparación de Software</header>
 
-  <input type="text" id="searchInput" placeholder="Buscar modelo..." />
+  <div class="search-bar-container">
+    <input type="text" id="searchInput" placeholder="Buscar modelo..." />
+  </div>
 
-  <table id="priceTable" aria-label="Tabla de precios Xiaomi">
-    <thead>
-      <tr>
-        <th>Modelo</th>
-        <th>FRP</th>
-        <th>Flash</th>
-        <th>T2</th>
-        <th>Cuenta Mi</th>
-        <th>FRP + T2</th>
-      </tr>
-    </thead>
-    <tbody id="dataBody">
-      <!-- Cargado dinámicamente -->
-    </tbody>
-  </table>
+  <div class="table-wrapper">
+    <table id="priceTable">
+      <thead>
+        <tr>
+          <th>Modelo</th>
+          <th>FRP</th>
+          <th>Flash</th>
+          <th>T2</th>
+          <th>Cuenta Mi</th>
+          <th>FRP + T2</th>
+        </tr>
+      </thead>
+      <tbody id="dataBody"></tbody>
+    </table>
+  </div>
+
+  <div class="back-and-contact">
+    <a href="https://wa.me/5491123177277" target="_blank" class="whatsapp-link">
+      <img src="img/whatsapp.png" alt="WhatsApp"> +54 9 11 2317-7277
+    </a>
+
+    <a href="index.html" class="btn-back">← Volver al Inicio</a>
+
+    <a href="https://wa.me/5491168577446" target="_blank" class="whatsapp-link">
+      <img src="img/whatsapp.png" alt="WhatsApp"> +54 9 11 6857-7446
+    </a>
+  </div>
 
   <script>
     const SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTStKFBbZRwbJA9lgsrZfgJC7kF4bm1ud3isN_SBN619K_jXnpF40T1Y-bj5fTaKrB5pi1wzMy6OHEd/pub?gid=1424853674&single=true&output=csv";
-
     const input = document.getElementById('searchInput');
     const tableBody = document.getElementById('dataBody');
 
     fetch(SHEET_URL)
       .then(response => response.text())
       .then(csvText => {
-        const rows = csvText.trim().split('\n').slice(1);
-        for (let row of rows) {
-          // Divide en columnas considerando comillas
-          const cols = row.match(/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g);
-          if (!cols || cols.length < 6) continue;
-
-          const tr = document.createElement('tr');
-          cols.forEach((col, i) => {
-            col = col.replace(/^"|"$/g, '').trim(); // quitar comillas
-            let display = col;
-
-            if (i > 0) {
-              // Para celdas de precios: quitar centavos, dejar solo número entero
-              const num = parseInt(col.replace(/[^\d]/g, ''), 10);
-              display = `$${num.toLocaleString()}`;
-            }
-
-            const td = document.createElement('td');
-            td.textContent = display;
-            td.setAttribute('data-label', ['Modelo', 'FRP', 'T2', 'Flash', 'Cuenta Mi', 'FRP + T2'][i]);
-            tr.appendChild(td);
-          });
-          tableBody.appendChild(tr);
-        }
+        Papa.parse(csvText, {
+          header: true,
+          skipEmptyLines: true,
+          complete: function(results) {
+            const data = results.data;
+            data.forEach(row => {
+              const tr = document.createElement('tr');
+              tr.innerHTML = `
+                <td>${row['Modelo'] || '-'}</td>
+                <td>${row['FRP'] || '-'}</td>
+                <td>${row['Flash'] || '-'}</td>
+                <td>${row['T2'] || '-'}</td>
+                <td>${row['Cuenta Mi'] || '-'}</td>
+                <td>${row['FRP + T2'] || '-'}</td>
+              `;
+              tableBody.appendChild(tr);
+            });
+          }
+        });
       })
       .catch(error => {
         console.error("Error cargando datos:", error);
@@ -225,19 +264,8 @@
     });
   </script>
 
-  <a href="index.html" class="btn-back">← Volver al Inicio</a>
-
   <footer>
-    <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
-      <a href="https://wa.me/5491168577446" target="_blank" style="display: flex; align-items: center; text-decoration: none; color: black;">
-        <img src="img/whatsapp.png" alt="WhatsApp" style="width: 20px; height: 20px; margin-right: 8px;">
-        +54 9 11 6857-7446
-      </a>
-      <a href="https://wa.me/5491123177277" target="_blank" style="display: flex; align-items: center; text-decoration: none; color: black;">
-        <img src="img/whatsapp.png" alt="WhatsApp" style="width: 20px; height: 20px; margin-right: 8px;">
-        +54 9 11 2317-7277
-      </a>
-    </div>
+    <p>&copy; 2025 Reparaciones Xiaomi</p>
   </footer>
 </body>
 </html>
