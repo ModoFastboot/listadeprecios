@@ -8,7 +8,8 @@
     body {
       font-family: Arial, sans-serif;
       background-color: #e6f0fb;
-      padding: 20px;
+      margin: 0;
+      padding: 0;
     }
 
     header {
@@ -18,40 +19,80 @@
       text-align: center;
       font-size: 1.8rem;
       font-weight: bold;
-      border-radius: 10px;
-      margin-bottom: 30px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .search-bar-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      max-width: 800px;
+      margin: 0 auto;
+      flex-wrap: wrap;
+      gap: 10px;
+      background-color: #e6f0fb;
+      padding: 15px 20px;
     }
 
     #searchInput {
-      display: block;
-      margin: 0 auto 20px auto;
       padding: 10px;
       width: 300px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
+      border-radius: 5px;
+      border: 1px solid #aaa;
       font-size: 1rem;
+      flex-grow: 1;
+    }
+
+    .table-wrapper {
+      max-width: 800px;
+      margin: 0 auto;
+      overflow: hidden;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      background-color: white;
     }
 
     table {
       width: 100%;
-      max-width: 800px;
-      margin: auto;
       border-collapse: collapse;
-      background-color: white;
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      table-layout: fixed;
     }
 
-    th, td {
+    thead {
+      display: table;
+      width: 100%;
+      table-layout: fixed;
+    }
+
+    thead th {
+      background-color: #333;
+      color: white;
       padding: 12px 15px;
       text-align: center;
       border: 1px solid #ccc;
+      position: sticky;
+      top: 70px;
+      z-index: 998;
     }
 
-    th {
-      background-color: #333;
-      color: white;
+    tbody {
+      display: block;
+      max-height: 60vh;
+      overflow-y: auto;
+    }
+
+    tbody tr {
+      display: table;
+      width: 100%;
+      table-layout: fixed;
+    }
+
+    td {
+      padding: 12px 15px;
+      text-align: center;
+      border: 1px solid #ccc;
     }
 
     td:first-child {
@@ -60,13 +101,10 @@
     }
 
     tr:hover {
-      background-color: #f0f0f0;
+      background-color: #f0f8ff;
     }
 
     .btn-back {
-      display: block;
-      width: max-content;
-      margin: 30px auto 0 auto;
       background-color: #444;
       color: white;
       text-decoration: none;
@@ -80,6 +118,29 @@
       background-color: #000;
     }
 
+    .back-and-contact {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 30px;
+      margin: 30px auto 0 auto;
+      flex-wrap: wrap;
+    }
+
+    .whatsapp-link {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: black;
+      font-weight: bold;
+    }
+
+    .whatsapp-link img {
+      width: 20px;
+      height: 20px;
+    }
+
     footer {
       margin-top: 40px;
       text-align: center;
@@ -91,61 +152,109 @@
       color: #000;
       text-decoration: none;
     }
+
+    @media (max-width: 600px) {
+      .search-bar-container {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      #searchInput {
+        width: 100%;
+      }
+
+      thead th, td {
+        font-size: 0.9rem;
+        padding: 10px;
+      }
+
+      .back-and-contact {
+        flex-direction: column;
+        gap: 15px;
+      }
+    }
   </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
 </head>
 <body>
   <header>iPhone - Reparación de Software</header>
 
-  <!-- Buscador -->
-  <input type="text" id="searchInput" placeholder="Buscar modelo..." />
+  <div class="search-bar-container">
+    <input type="text" id="searchInput" placeholder="Buscar modelo..." />
+  </div>
 
-  <table id="priceTable">
-    <thead>
-      <tr>
-        <th>Modelo</th>
-        <th>Flash</th>
-        <th>Cuenta iCloud</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr><td>iPhone 6 / 6s / 6 Plus</td><td>$4.000</td><td>$10.000</td></tr>
-      <tr><td>iPhone 7 / 7 Plus</td><td>$4.000</td><td>$10.000</td></tr>
-      <tr><td>iPhone 8 / 8 Plus</td><td>$4.000</td><td>$12.000</td></tr>
-      <tr><td>iPhone SE (2da Gen)</td><td>$4.000</td><td>$12.000</td></tr>
-      <tr><td>iPhone X / XR / XS</td><td>$4.000</td><td>$14.000</td></tr>
-      <tr><td>iPhone 11 / 11 Pro</td><td>$4.000</td><td>$16.000</td></tr>
-      <tr><td>iPhone 12 / 12 Mini</td><td>$4.000</td><td>$18.000</td></tr>
-      <tr><td>iPhone 13 / 13 Pro</td><td>$4.000</td><td>$20.000</td></tr>
-    </tbody>
-  </table>
+  <div class="table-wrapper">
+    <table id="priceTable">
+      <thead>
+        <tr>
+          <th>Modelo</th>
+          <th>Flash</th>
+          <th>Cuenta iCloud</th>
+        </tr>
+      </thead>
+      <tbody id="dataBody"></tbody>
+    </table>
+  </div>
+
+  <div class="back-and-contact">
+    <a href="https://wa.me/5491123177277" target="_blank" class="whatsapp-link">
+      <img src="img/whatsapp.png" alt="WhatsApp"> +54 9 11 2317-7277
+    </a>
+
+    <a href="index.html" class="btn-back">← Volver al Inicio</a>
+
+    <a href="https://wa.me/5491168577446" target="_blank" class="whatsapp-link">
+      <img src="img/whatsapp.png" alt="WhatsApp"> +54 9 11 6857-7446
+    </a>
+  </div>
 
   <script>
+    const SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTStKFBbZRwbJA9lgsrZfgJC7kF4bm1ud3isN_SBN619K_jXnpF40T1Y-bj5fTaKrB5pi1wzMy6OHEd/pub?gid=2143368521&single=true&output=csv";
     const input = document.getElementById('searchInput');
-    const table = document.getElementById('priceTable');
+    const tableBody = document.getElementById('dataBody');
+
+    fetch(SHEET_URL)
+      .then(response => response.text())
+      .then(csvText => {
+        Papa.parse(csvText, {
+          header: true,
+          skipEmptyLines: true,
+          complete: function(results) {
+            const data = results.data;
+            data.forEach(row => {
+              const tr = document.createElement('tr');
+              tr.innerHTML = `
+                <td>${row['Modelo'] || '-'}</td>
+                <td>${row['Flash'] || '-'}</td>
+                <td>${row['Cuenta iCloud'] || '-'}</td>
+              `;
+              tableBody.appendChild(tr);
+            });
+          }
+        });
+      })
+      .catch(error => {
+        console.error("Error cargando datos:", error);
+        const tr = document.createElement('tr');
+        const td = document.createElement('td');
+        td.colSpan = 3;
+        td.textContent = "Error al cargar los datos.";
+        tr.appendChild(td);
+        tableBody.appendChild(tr);
+      });
+
     input.addEventListener('keyup', () => {
       const filter = input.value.toLowerCase();
-      const rows = table.tBodies[0].rows;
-      for (let i = 0; i < rows.length; i++) {
-        const modelCell = rows[i].cells[0];
-        const text = modelCell.textContent.toLowerCase();
-        rows[i].style.display = text.includes(filter) ? '' : 'none';
+      const rows = tableBody.getElementsByTagName('tr');
+      for (let row of rows) {
+        const model = row.cells[0].textContent.toLowerCase();
+        row.style.display = model.includes(filter) ? '' : 'none';
       }
     });
   </script>
 
-  <a href="index.html" class="btn-back">← Volver al Inicio</a>
-
   <footer>
-    <div style="display: flex; justify-content: center; align-items: center; gap: 20px;">
-      <a href="https://wa.me/5491168577446" target="_blank" style="display: flex; align-items: center; text-decoration: none; color: black;">
-        <img src="img/whatsapp.png" alt="WhatsApp" style="width: 20px; height: 20px; margin-right: 8px;">
-        +54 9 11 6857-7446
-      </a>
-      <a href="https://wa.me/5491123177277" target="_blank" style="display: flex; align-items: center; text-decoration: none; color: black;">
-        <img src="img/whatsapp.png" alt="WhatsApp" style="width: 20px; height: 20px; margin-right: 8px;">
-        +54 9 11 2317-7277
-      </a>
-    </div>
+    <p>&copy; 2025 Reparaciones iPhone</p>
   </footer>
 </body>
 </html>
