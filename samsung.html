@@ -109,7 +109,6 @@
     }
 
     .btn-back {
-      display: block;
       background-color: #00aaff;
       color: white;
       text-decoration: none;
@@ -123,18 +122,12 @@
       background-color: #007fbb;
     }
 
-    .top-btn {
-      margin: 0;
-      padding: 10px 20px;
-      font-size: 0.95rem;
-    }
-
     .back-and-contact {
       display: flex;
       justify-content: center;
       align-items: center;
       gap: 30px;
-      margin-top: 40px;
+      margin: 30px auto 0 auto;
       flex-wrap: wrap;
     }
 
@@ -178,6 +171,11 @@
         font-size: 0.9rem;
         padding: 10px;
       }
+
+      .back-and-contact {
+        flex-direction: column;
+        gap: 15px;
+      }
     }
   </style>
 
@@ -204,6 +202,19 @@
       </thead>
       <tbody></tbody>
     </table>
+  </div>
+
+  <!-- Botón + WhatsApp -->
+  <div class="back-and-contact">
+    <a href="https://wa.me/5491123177277" target="_blank" class="whatsapp-link">
+      <img src="img/whatsapp.png" alt="WhatsApp"> +54 9 11 2317-7277
+    </a>
+
+    <a href="index.html" class="btn-back">← Volver al Inicio</a>
+
+    <a href="https://wa.me/5491168577446" target="_blank" class="whatsapp-link">
+      <img src="img/whatsapp.png" alt="WhatsApp"> +54 9 11 6857-7446
+    </a>
   </div>
 
   <script>
@@ -241,7 +252,7 @@
     input.addEventListener('keyup', () => {
       const filter = input.value.toLowerCase();
       const rows = table.tBodies[0].rows;
-      for(let i = 0; i < rows.length; i++) {
+      for (let i = 0; i < rows.length; i++) {
         const modelCell = rows[i].cells[0];
         const text = modelCell.textContent.toLowerCase();
         rows[i].style.display = text.includes(filter) ? '' : 'none';
@@ -249,24 +260,12 @@
     });
   </script>
 
-  <!-- Botón y contactos -->
-  <div class="back-and-contact">
-    <a href="https://wa.me/5491123177277" target="_blank" class="whatsapp-link">
-      <img src="img/whatsapp.png" alt="WhatsApp"> +54 9 11 2317-7277
-    </a>
-
-    <a href="index.html" class="btn-back">← Volver al Inicio</a>
-
-    <a href="https://wa.me/5491168577446" target="_blank" class="whatsapp-link">
-      <img src="img/whatsapp.png" alt="WhatsApp"> +54 9 11 6857-7446
-    </a>
-  </div>
-
   <footer>
     <p>&copy; 2025 Reparaciones Samsung</p>
   </footer>
 </body>
 </html>
+
 
 
 
