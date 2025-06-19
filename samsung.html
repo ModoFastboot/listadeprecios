@@ -1,13 +1,197 @@
-<!-- ... todo el código anterior sin cambios hasta el script ... -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Samsung - Reparación de Software</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #e6f0fb;
+      padding: 20px;
+    }
+
+    header {
+      background-color: #005bab;
+      color: white;
+      padding: 15px;
+      text-align: center;
+      font-size: 1.8rem;
+      font-weight: bold;
+      border-radius: 10px;
+      margin-bottom: 30px;
+    }
+
+    .search-bar-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 800px;
+      margin: 0 auto 20px auto;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    #searchInput {
+      padding: 10px;
+      width: 300px;
+      border-radius: 5px;
+      border: 1px solid #aaa;
+      font-size: 1rem;
+      flex-grow: 1;
+    }
+
+    table {
+      width: 100%;
+      max-width: 800px;
+      margin: auto;
+      border-collapse: collapse;
+      background-color: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    th, td {
+      padding: 12px 15px;
+      text-align: center;
+      border: 1px solid #ccc;
+    }
+
+    th {
+      background-color: #0074d9;
+      color: white;
+    }
+
+    td:first-child {
+      text-align: left;
+      font-weight: bold;
+    }
+
+    tr:hover {
+      background-color: #f0f8ff;
+    }
+
+    .btn-back {
+      display: block;
+      width: max-content;
+      background-color: #00aaff;
+      color: white;
+      text-decoration: none;
+      padding: 12px 25px;
+      border-radius: 10px;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .btn-back:hover {
+      background-color: #007fbb;
+    }
+
+    .top-btn {
+      margin: 0;
+      padding: 10px 20px;
+      font-size: 0.95rem;
+    }
+
+    footer {
+      margin-top: 40px;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #555;
+    }
+
+    footer a {
+      color: #00aaff;
+      text-decoration: none;
+    }
+
+    @media (max-width: 600px) {
+      .search-bar-container {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      #searchInput {
+        width: 100%;
+      }
+
+      .btn-back {
+        margin: 10px auto 0 auto;
+      }
+    }
+  </style>
+  <!-- PapaParse -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
+</head>
+<body>
+  <header>Samsung - Reparación de Software</header>
+
+  <div class="search-bar-container">
+    <input type="text" id="searchInput" placeholder="Buscar modelo..." />
+    <a href="index.html" class="btn-back top-btn">← Volver al Inicio</a>
+  </div>
+
+  <table id="priceTable">
+    <thead>
+      <tr>
+        <th>Modelo</th>
+        <th>FRP</th>
+        <th>Flash</th>
+        <th>T2</th>
+        <th>FRP + T2</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
 
   <script>
-    // (sin cambios en el script)
+    const sheetURL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTStKFBbZRwbJA9lgsrZfgJC7kF4bm1ud3isN_SBN619K_jXnpF40T1Y-bj5fTaKrB5pi1wzMy6OHEd/pub?output=csv';
+
+    fetch(sheetURL)
+      .then(response => response.text())
+      .then(csv => {
+        Papa.parse(csv, {
+          header: true,
+          skipEmptyLines: true,
+          complete: function(results) {
+            const data = results.data;
+            const tbody = document.querySelector("#priceTable tbody");
+            tbody.innerHTML = '';
+
+            // Mostrar la primera fila en consola para debug
+            console.log("Encabezados detectados:", data[0]);
+
+            data.forEach(row => {
+              const tr = document.createElement("tr");
+              tr.innerHTML = `
+                <td>${row['Modelo'] || ''}</td>
+                <td>${row['FRP'] || ''}</td>
+                <td>${row['Flash'] || ''}</td>
+                <td>${row['T2'] || ''}</td>
+                <td>${row['FRP + T2'] || ''}</td>
+              `;
+              tbody.appendChild(tr);
+            });
+          }
+        });
+      });
+
+    // Buscador
+    const input = document.getElementById('searchInput');
+    const table = document.getElementById('priceTable');
+    input.addEventListener('keyup', () => {
+      const filter = input.value.toLowerCase();
+      const rows = table.tBodies[0].rows;
+      for(let i = 0; i < rows.length; i++) {
+        const modelCell = rows[i].cells[0];
+        const text = modelCell.textContent.toLowerCase();
+        rows[i].style.display = text.includes(filter) ? '' : 'none';
+      }
+    });
   </script>
 
-  <!-- Botón de abajo alineado a la derecha -->
-  <div class="bottom-btn-container">
-    <a href="index.html" class="btn-back">← Volver al Inicio</a>
-  </div>
+  <a href="index.html" class="btn-back">← Volver al Inicio</a>
 
   <footer>
     <div style="display: flex; justify-content: center; align-items: center; gap: 20px;">
@@ -21,17 +205,9 @@
       </a>
     </div>
   </footer>
-
-  <style>
-    .bottom-btn-container {
-      max-width: 900px;
-      margin: 30px auto 0 auto;
-      display: flex;
-      justify-content: flex-end;
-    }
-  </style>
 </body>
 </html>
+
 
 
 
