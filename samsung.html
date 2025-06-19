@@ -8,7 +8,8 @@
     body {
       font-family: Arial, sans-serif;
       background-color: #e6f0fb;
-      padding: 20px;
+      margin: 0;
+      padding: 0;
     }
 
     header {
@@ -18,8 +19,9 @@
       text-align: center;
       font-size: 1.8rem;
       font-weight: bold;
-      border-radius: 10px;
-      margin-bottom: 30px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
 
     .search-bar-container {
@@ -27,9 +29,15 @@
       justify-content: space-between;
       align-items: center;
       max-width: 800px;
-      margin: 0 auto 20px auto;
+      margin: 0 auto;
       flex-wrap: wrap;
       gap: 10px;
+      background-color: #e6f0fb;
+      padding: 15px 20px;
+      position: sticky;
+      top: 72px;
+      z-index: 999;
+      border-bottom: 1px solid #ccc;
     }
 
     #searchInput {
@@ -41,26 +49,54 @@
       flex-grow: 1;
     }
 
-    table {
-      width: 100%;
+    .table-wrapper {
       max-width: 800px;
-      margin: auto;
-      border-collapse: collapse;
-      background-color: white;
-      border-radius: 8px;
+      margin: 0 auto;
       overflow: hidden;
+      border-radius: 8px;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      background-color: white;
     }
 
-    th, td {
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+    }
+
+    thead th {
+      background-color: #0074d9;
+      color: white;
       padding: 12px 15px;
       text-align: center;
       border: 1px solid #ccc;
+      position: sticky;
+      top: 140px;
+      z-index: 998;
     }
 
-    th {
-      background-color: #0074d9;
-      color: white;
+    tbody {
+      display: block;
+      max-height: 60vh;
+      overflow-y: auto;
+    }
+
+    tbody tr {
+      display: table;
+      width: 100%;
+      table-layout: fixed;
+    }
+
+    thead {
+      display: table;
+      width: 100%;
+      table-layout: fixed;
+    }
+
+    td {
+      padding: 12px 15px;
+      text-align: center;
+      border: 1px solid #ccc;
     }
 
     td:first-child {
@@ -82,6 +118,7 @@
       border-radius: 10px;
       font-weight: bold;
       transition: 0.3s;
+      margin: 30px auto 0 auto;
     }
 
     .btn-back:hover {
@@ -119,8 +156,14 @@
       .btn-back {
         margin: 10px auto 0 auto;
       }
+
+      thead th, td {
+        font-size: 0.9rem;
+        padding: 10px;
+      }
     }
   </style>
+
   <!-- PapaParse -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
 </head>
@@ -132,18 +175,20 @@
     <a href="index.html" class="btn-back top-btn">← Volver al Inicio</a>
   </div>
 
-  <table id="priceTable">
-    <thead>
-      <tr>
-        <th>Modelo</th>
-        <th>FRP</th>
-        <th>Flash</th>
-        <th>T2</th>
-        <th>FRP + T2</th>
-      </tr>
-    </thead>
-    <tbody></tbody>
-  </table>
+  <div class="table-wrapper">
+    <table id="priceTable">
+      <thead>
+        <tr>
+          <th>Modelo</th>
+          <th>FRP</th>
+          <th>Flash</th>
+          <th>T2</th>
+          <th>FRP + T2</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
 
   <script>
     const sheetURL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTStKFBbZRwbJA9lgsrZfgJC7kF4bm1ud3isN_SBN619K_jXnpF40T1Y-bj5fTaKrB5pi1wzMy6OHEd/pub?output=csv';
@@ -158,9 +203,6 @@
             const data = results.data;
             const tbody = document.querySelector("#priceTable tbody");
             tbody.innerHTML = '';
-
-            // Mostrar la primera fila en consola para debug
-            console.log("Encabezados detectados:", data[0]);
 
             data.forEach(row => {
               const tr = document.createElement("tr");
