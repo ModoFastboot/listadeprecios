@@ -26,7 +26,7 @@
 
     .search-bar-container {
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
       max-width: 800px;
       margin: 0 auto;
@@ -110,7 +110,6 @@
 
     .btn-back {
       display: block;
-      width: max-content;
       background-color: #00aaff;
       color: white;
       text-decoration: none;
@@ -118,7 +117,6 @@
       border-radius: 10px;
       font-weight: bold;
       transition: 0.3s;
-      margin: 30px auto 0 auto;
     }
 
     .btn-back:hover {
@@ -129,6 +127,29 @@
       margin: 0;
       padding: 10px 20px;
       font-size: 0.95rem;
+    }
+
+    .back-and-contact {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 30px;
+      margin-top: 40px;
+      flex-wrap: wrap;
+    }
+
+    .whatsapp-link {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: black;
+      font-weight: bold;
+    }
+
+    .whatsapp-link img {
+      width: 20px;
+      height: 20px;
     }
 
     footer {
@@ -153,11 +174,7 @@
         width: 100%;
       }
 
-      .btn-back {
-        margin: 10px auto 0 auto;
-      }
-
-      thead th, td {
+      .thead th, td {
         font-size: 0.9rem;
         padding: 10px;
       }
@@ -172,7 +189,6 @@
 
   <div class="search-bar-container">
     <input type="text" id="searchInput" placeholder="Buscar modelo..." />
-    <a href="index.html" class="btn-back top-btn">← Volver al Inicio</a>
   </div>
 
   <div class="table-wrapper">
@@ -233,22 +249,25 @@
     });
   </script>
 
-  <a href="index.html" class="btn-back">← Volver al Inicio</a>
+  <!-- Botón y contactos -->
+  <div class="back-and-contact">
+    <a href="https://wa.me/5491123177277" target="_blank" class="whatsapp-link">
+      <img src="img/whatsapp.png" alt="WhatsApp"> +54 9 11 2317-7277
+    </a>
+
+    <a href="index.html" class="btn-back">← Volver al Inicio</a>
+
+    <a href="https://wa.me/5491168577446" target="_blank" class="whatsapp-link">
+      <img src="img/whatsapp.png" alt="WhatsApp"> +54 9 11 6857-7446
+    </a>
+  </div>
 
   <footer>
-    <div style="display: flex; justify-content: center; align-items: center; gap: 20px;">
-      <a href="https://wa.me/5491168577446" target="_blank" style="display: flex; align-items: center; text-decoration: none; color: black;">
-        <img src="img/whatsapp.png" alt="WhatsApp" style="width: 20px; height: 20px; margin-right: 8px;">
-        +54 9 11 6857-7446
-      </a>
-      <a href="https://wa.me/5491123177277" target="_blank" style="display: flex; align-items: center; text-decoration: none; color: black;">
-        <img src="img/whatsapp.png" alt="WhatsApp" style="width: 20px; height: 20px; margin-right: 8px;">
-        +54 9 11 2317-7277
-      </a>
-    </div>
+    <p>&copy; 2025 Reparaciones Samsung</p>
   </footer>
 </body>
 </html>
+
 
 
 
