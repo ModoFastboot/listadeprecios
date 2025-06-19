@@ -8,8 +8,7 @@
     body {
       font-family: Arial, sans-serif;
       background-color: #e6f0fb;
-      padding: 0;
-      margin: 0;
+      padding: 20px;
     }
 
     header {
@@ -19,10 +18,8 @@
       text-align: center;
       font-size: 1.8rem;
       font-weight: bold;
-      border-radius: 0;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
+      border-radius: 10px;
+      margin-bottom: 30px;
     }
 
     .search-bar-container {
@@ -30,15 +27,9 @@
       justify-content: space-between;
       align-items: center;
       max-width: 800px;
-      margin: 0 auto;
+      margin: 0 auto 20px auto;
       flex-wrap: wrap;
       gap: 10px;
-      background-color: #e6f0fb;
-      padding: 15px 20px;
-      position: sticky;
-      top: 72px;
-      z-index: 999;
-      border-bottom: 1px solid #ccc;
     }
 
     #searchInput {
@@ -67,12 +58,9 @@
       border: 1px solid #ccc;
     }
 
-    thead th {
+    th {
       background-color: #0074d9;
       color: white;
-      position: sticky;
-      top: 140px;
-      z-index: 998;
     }
 
     td:first-child {
@@ -133,7 +121,6 @@
       }
     }
   </style>
-
   <!-- PapaParse -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
 </head>
@@ -172,6 +159,9 @@
             const tbody = document.querySelector("#priceTable tbody");
             tbody.innerHTML = '';
 
+            // Mostrar la primera fila en consola para debug
+            console.log("Encabezados detectados:", data[0]);
+
             data.forEach(row => {
               const tr = document.createElement("tr");
               tr.innerHTML = `
@@ -201,7 +191,7 @@
     });
   </script>
 
-  <a href="index.html" class="btn-back" style="margin: 30px auto 0 auto;">← Volver al Inicio</a>
+  <a href="index.html" class="btn-back">← Volver al Inicio</a>
 
   <footer>
     <div style="display: flex; justify-content: center; align-items: center; gap: 20px;">
