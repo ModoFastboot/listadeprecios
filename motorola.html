@@ -8,9 +8,10 @@
     body {
       font-family: Arial, sans-serif;
       background-color: #e6f0fb;
-      padding: 20px;
-      overflow-x: hidden;
+      margin: 0;
+      padding: 0;
     }
+
     header {
       background-color: #1976d2;
       color: white;
@@ -18,55 +19,96 @@
       text-align: center;
       font-size: 1.8rem;
       font-weight: bold;
-      border-radius: 10px;
-      margin-bottom: 30px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
+
     .search-bar-container {
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
-      max-width: 900px;
-      margin: 0 auto 20px auto;
+      max-width: 800px;
+      margin: 0 auto;
       flex-wrap: wrap;
       gap: 10px;
+      background-color: #e6f0fb;
+      padding: 15px 20px;
+      position: sticky;
+      top: 72px;
+      z-index: 999;
+      border-bottom: 1px solid #ccc;
     }
+
     #searchInput {
       padding: 10px;
       width: 300px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
+      border-radius: 5px;
+      border: 1px solid #aaa;
       font-size: 1rem;
       flex-grow: 1;
     }
+
+    .table-wrapper {
+      max-width: 800px;
+      margin: 0 auto;
+      overflow: hidden;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      background-color: white;
+    }
+
     table {
       width: 100%;
-      max-width: 900px;
-      margin: auto;
       border-collapse: collapse;
-      background-color: white;
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      table-layout: fixed;
     }
-    th, td {
+
+    thead th {
+      background-color: #1565c0;
+      color: white;
+      padding: 12px 15px;
+      text-align: center;
+      border: 1px solid #ccc;
+      position: sticky;
+      top: 140px;
+      z-index: 998;
+    }
+
+    tbody {
+      display: block;
+      max-height: 60vh;
+      overflow-y: auto;
+    }
+
+    tbody tr {
+      display: table;
+      width: 100%;
+      table-layout: fixed;
+    }
+
+    thead {
+      display: table;
+      width: 100%;
+      table-layout: fixed;
+    }
+
+    td {
       padding: 12px 15px;
       text-align: center;
       border: 1px solid #ccc;
     }
-    th {
-      background-color: #1565c0;
-      color: white;
-    }
+
     td:first-child {
       text-align: left;
       font-weight: bold;
     }
+
     tr:hover {
       background-color: #e3f2fd;
     }
+
     .btn-back {
-      display: block;
-      width: max-content;
       background-color: #2196f3;
       color: white;
       text-decoration: none;
@@ -75,83 +117,68 @@
       font-weight: bold;
       transition: 0.3s;
     }
+
     .btn-back:hover {
       background-color: #1976d2;
     }
-    .top-btn {
-      margin: 0;
-      padding: 10px 20px;
-      font-size: 0.95rem;
+
+    .back-and-contact {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 30px;
+      margin: 30px auto 0 auto;
+      flex-wrap: wrap;
     }
+
+    .whatsapp-link {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: black;
+      font-weight: bold;
+    }
+
+    .whatsapp-link img {
+      width: 20px;
+      height: 20px;
+    }
+
     footer {
       margin-top: 40px;
       text-align: center;
       font-size: 0.9rem;
       color: #555;
-      display: flex;
-      justify-content: center;
     }
-    footer div {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
+
     footer a {
       color: #1565c0;
       text-decoration: none;
-      display: flex;
-      align-items: center;
     }
+
     @media (max-width: 600px) {
       .search-bar-container {
         flex-direction: column;
         align-items: stretch;
       }
+
       #searchInput {
         width: 100%;
       }
-      table, thead, tbody, th, td, tr { display: block; }
-      thead tr { position: absolute; top: -9999px; left: -9999px; }
-      tr {
-        margin-bottom: 20px;
-        background: white;
-        border-radius: 8px;
-        box-shadow: 0 0 8px rgba(0,0,0,0.1);
-        padding: 15px;
-      }
-      td {
-        border: none;
-        border-bottom: 1px solid #eee;
-        position: relative;
-        padding-left: 50%;
-        text-align: left;
-        font-size: 0.95rem;
-        color: #000;
-      }
-      td:last-child { border-bottom: 0; }
-      td::before {
-        position: absolute;
-        top: 15px;
-        left: 15px;
-        width: 45%;
-        padding-right: 10px;
-        white-space: nowrap;
-        font-weight: bold;
-        text-align: left;
-        color: #555;
+
+      thead th, td {
         font-size: 0.9rem;
-        content: attr(data-label);
+        padding: 10px;
       }
-      footer div {
+
+      .back-and-contact {
         flex-direction: column;
-        align-items: center;
         gap: 15px;
       }
-      footer a { justify-content: center; color: black; }
     }
   </style>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
 </head>
 <body>
@@ -159,21 +186,34 @@
 
   <div class="search-bar-container">
     <input type="text" id="searchInput" placeholder="Buscar modelo..." />
-    <a href="index.html" class="btn-back top-btn">← Volver al Inicio</a>
   </div>
 
-  <table id="priceTable" aria-label="Tabla de precios Motorola">
-    <thead>
-      <tr>
-        <th>Modelo</th>
-        <th>FRP</th>
-        <th>Flash</th>
-        <th>T2</th>
-        <th>FRP+T2</th>
-      </tr>
-    </thead>
-    <tbody id="tableBody"></tbody>
-  </table>
+  <div class="table-wrapper">
+    <table id="priceTable">
+      <thead>
+        <tr>
+          <th>Modelo</th>
+          <th>FRP</th>
+          <th>Flash</th>
+          <th>T2</th>
+          <th>FRP+T2</th>
+        </tr>
+      </thead>
+      <tbody id="tableBody"></tbody>
+    </table>
+  </div>
+
+  <div class="back-and-contact">
+    <a href="https://wa.me/5491123177277" target="_blank" class="whatsapp-link">
+      <img src="img/whatsapp.png" alt="WhatsApp"> +54 9 11 2317-7277
+    </a>
+
+    <a href="index.html" class="btn-back">← Volver al Inicio</a>
+
+    <a href="https://wa.me/5491168577446" target="_blank" class="whatsapp-link">
+      <img src="img/whatsapp.png" alt="WhatsApp"> +54 9 11 6857-7446
+    </a>
+  </div>
 
   <script>
     const input = document.getElementById('searchInput');
@@ -209,11 +249,11 @@
             data.forEach(row => {
               const tr = document.createElement('tr');
               tr.innerHTML = `
-                <td data-label="Modelo">${row['Modelo'] || '-'}</td>
-                <td data-label="FRP">${row['FRP'] || '-'}</td>
-                <td data-label="Flash">${row['Flash'] || '-'}</td>
-                <td data-label="T2">${row['T2'] || '-'}</td>
-                <td data-label="FRP+T2">${row['FRP+T2'] || row['FRP + T2'] || '-'}</td>
+                <td>${row['Modelo'] || '-'}</td>
+                <td>${row['FRP'] || '-'}</td>
+                <td>${row['Flash'] || '-'}</td>
+                <td>${row['T2'] || '-'}</td>
+                <td>${row['FRP+T2'] || row['FRP + T2'] || '-'}</td>
               `;
               tableBody.appendChild(tr);
             });
@@ -226,19 +266,8 @@
       });
   </script>
 
-  <a href="index.html" class="btn-back">← Volver al Inicio</a>
-
   <footer>
-    <div>
-      <a href="https://wa.me/5491168577446" target="_blank">
-        <img src="img/whatsapp.png" alt="WhatsApp" style="width:20px;height:20px;margin-right:8px;">
-        +54 9 11 6857-7446
-      </a>
-      <a href="https://wa.me/5491123177277" target="_blank">
-        <img src="img/whatsapp.png" alt="WhatsApp" style="width:20px;height:20px;margin-right:8px;">
-        +54 9 11 2317-7277
-      </a>
-    </div>
+    <p>&copy; 2025 Reparaciones Motorola</p>
   </footer>
 </body>
 </html>
