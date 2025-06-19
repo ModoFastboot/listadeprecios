@@ -21,14 +21,22 @@
       border-radius: 10px;
       margin-bottom: 30px;
     }
-    #searchInput {
-      display: block;
+    .search-bar-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 900px;
       margin: 0 auto 20px auto;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    #searchInput {
       padding: 10px;
       width: 300px;
       border: 1px solid #ccc;
       border-radius: 8px;
       font-size: 1rem;
+      flex-grow: 1;
     }
     table {
       width: 100%;
@@ -59,7 +67,6 @@
     .btn-back {
       display: block;
       width: max-content;
-      margin: 30px auto 0 auto;
       background-color: #2196f3;
       color: white;
       text-decoration: none;
@@ -70,6 +77,11 @@
     }
     .btn-back:hover {
       background-color: #1976d2;
+    }
+    .top-btn {
+      margin: 0;
+      padding: 10px 20px;
+      font-size: 0.95rem;
     }
     footer {
       margin-top: 40px;
@@ -93,7 +105,13 @@
       align-items: center;
     }
     @media (max-width: 600px) {
-      #searchInput { width: 90%; }
+      .search-bar-container {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      #searchInput {
+        width: 100%;
+      }
       table, thead, tbody, th, td, tr { display: block; }
       thead tr { position: absolute; top: -9999px; left: -9999px; }
       tr {
@@ -139,7 +157,10 @@
 <body>
   <header>Motorola - Reparación de Software</header>
 
-  <input type="text" id="searchInput" placeholder="Buscar modelo..." />
+  <div class="search-bar-container">
+    <input type="text" id="searchInput" placeholder="Buscar modelo..." />
+    <a href="index.html" class="btn-back top-btn">← Volver al Inicio</a>
+  </div>
 
   <table id="priceTable" aria-label="Tabla de precios Motorola">
     <thead>
